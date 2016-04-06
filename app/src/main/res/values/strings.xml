@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DiaCert_forAndroid</string>
 
+    <string name="sample_text">Här kommer du framöver att kunna se de hälsoplaner som du och din vårdgivare har kommit överens om.
+    Just nu kan du klicka på \"Steg\" och följa aktivitetsloggen som visar hur många steg du har gått varje dag.</string>
+
     <string name="main_window">Översikt</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

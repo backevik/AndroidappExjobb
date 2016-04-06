@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_about"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="Om"
+        android:title="Inställningar"
         app:showAsAction="never" />
-
     <item
         android:id="@+id/action_help"
         android:orderInCategory="100"
         android:title="Hjälp"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="Om"
         app:showAsAction="never" />
 </menu>
