@@ -3,33 +3,33 @@ package examensarbete.diacert_android;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.support.wearable.view.CardFragment;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.wearable.view.BoxInsetLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Toolbar toolbar;
+    private OverviewFragment overviewFragment;
+    private LogFragment logFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Översikt");
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Översikt");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -39,6 +39,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        OverviewFragment overviewFragment = new OverviewFragment();
+        fragmentTransaction.add(R.id.app_bar_main_coordLayout, overviewFragment, "OverviewFragment Active");
+        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -68,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
             return true;
-        } else if(id == R.id.action_help){
+        } else if (id == R.id.action_help) {
             return true;
         }
 
@@ -82,15 +89,30 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.overview) {
-            // Handle the camera action
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+            OverviewFragment overviewFragment = new OverviewFragment();
+            fragmentTransaction.replace(R.id.app_bar_main_coordLayout, overviewFragment, "LogFragment Active");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Översikt");
         } else if (id == R.id.message) {
 
-        } else if (id == R.id.log){
-
+        } else if (id == R.id.log) {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+            LogFragment logFragment = new LogFragment();
+            fragmentTransaction.replace(R.id.app_bar_main_coordLayout, logFragment, "LogFragment Active");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Logg");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

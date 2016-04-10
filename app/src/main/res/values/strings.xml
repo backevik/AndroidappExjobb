@@ -11,4 +11,6 @@
 
     <color name="white">#FFFFFF</color>
 
+    <string name="empty_field">-</string>
+
 </resources>
