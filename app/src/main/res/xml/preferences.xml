@@ -1,0 +1,24 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Allmänt"
+        android:key="pref_key_common">
+        <CheckBoxPreference
+            android:key="pref_key_notifications"
+            android:summary="Sätt på eller stäng av push-notifikationer"
+            android:title="Notifikationer"
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_key_child_notifications"
+            android:dependency="pref_key_notifications"
+            android:layout="?android:attr/preferenceLayoutChild"
+            android:title="Ljud"
+            android:summary="Sätt på eller stäng av ljud"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:key="pref_key_connect"
+            android:title="Koppla bort"
+            android:summary="Koppla bort den parkoppling du och din läkare genomförde"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>

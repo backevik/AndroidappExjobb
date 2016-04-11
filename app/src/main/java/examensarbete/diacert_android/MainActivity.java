@@ -108,6 +108,15 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             toolbar.setTitle("Logg");
+        }else if (id == R.id.settings){
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+            SettingsFragment settingsFragment = new SettingsFragment();
+            fragmentTransaction.replace(R.id.app_bar_main_coordLayout, settingsFragment, "SettingsFragment Active");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Inställningar");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
