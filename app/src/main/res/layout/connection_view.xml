@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/startscreen_bg"
+    android:id="@+id/relativeConnectLayout"
+    tools:context="examensarbete.diacert_android.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/connectItemsLayout">
+
+        <ImageView
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/startscreen_logo"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:id="@+id/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pickText"
+            android:layout_below="@+id/logo"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:text="Ange din kod"/>
+
+        <EditText
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="24dp"
+            android:inputType="numberPassword"
+            android:ems="10"
+            android:id="@+id/connectEditText"
+            android:textAlignment="center"
+            android:letterSpacing="0.5"
+            android:textColor="@color/white"
+            android:maxLength="6"
+            android:imeOptions="actionDone"
+            android:layout_below="@+id/pickText"/>
+
+        <Button
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/connectButton"
+            android:textSize="16dp"
+            android:textColor="@color/FadedBlackTextColor"
+            android:background="@color/FadedBlueButtonColor"
+            android:text="Anslut till UTV"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/connectEditText"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

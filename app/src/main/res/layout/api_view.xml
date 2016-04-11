@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/startscreen_bg"
+    android:id="@+id/relativeConnectLayout"
+    tools:context="examensarbete.diacert_android.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/connectItemsLayout">
+
+        <ImageView
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/startscreen_logo"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:id="@+id/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pickText"
+            android:layout_below="@+id/logo"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:text="Välj testmiljö"/>
+
+        <Button
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/developButton"
+            android:textSize="16dp"
+            android:textColor="@color/FadedBlackTextColor"
+            android:background="@color/FadedBlueButtonColor"
+            android:text="Utveckling"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/pickText"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/prototypeButton"
+            android:textSize="16dp"
+            android:textColor="@color/FadedBlackTextColor"
+            android:background="@color/FadedBlueButtonColor"
+            android:text="Prototyp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/developButton"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

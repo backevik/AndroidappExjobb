@@ -3,15 +3,7 @@ package examensarbete.diacert_android;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.support.wearable.view.CardFragment;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -22,22 +14,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Toolbar toolbar;
+    private OverviewFragment overviewFragment;
+    private LogFragment logFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Översikt");
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Översikt");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -47,6 +39,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        OverviewFragment overviewFragment = new OverviewFragment();
+        fragmentTransaction.add(R.id.app_bar_main_coordLayout, overviewFragment, "OverviewFragment Active");
+        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_about) {
             licenseDialog();
             return true;
-        } else if(id == R.id.action_help){
+        } else if (id == R.id.action_help) {
             return true;
         }
 
@@ -91,11 +90,34 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.overview) {
-            // Handle the camera action
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+            OverviewFragment overviewFragment = new OverviewFragment();
+            fragmentTransaction.replace(R.id.app_bar_main_coordLayout, overviewFragment, "LogFragment Active");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Översikt");
         } else if (id == R.id.message) {
 
-        } else if (id == R.id.log){
-
+        } else if (id == R.id.log) {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+            LogFragment logFragment = new LogFragment();
+            fragmentTransaction.replace(R.id.app_bar_main_coordLayout, logFragment, "LogFragment Active");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Logg");
+        }else if (id == R.id.settings){
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+            SettingsFragment settingsFragment = new SettingsFragment();
+            fragmentTransaction.replace(R.id.app_bar_main_coordLayout, settingsFragment, "SettingsFragment Active");
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Inställningar");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

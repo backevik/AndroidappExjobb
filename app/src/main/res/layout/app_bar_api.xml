@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/connectLayout"
     android:fitsSystemWindows="true"
-    android:id="@+id/app_bar_main_coordLayout"
     tools:context="examensarbete.diacert_android.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -13,15 +13,10 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:title="Översikt"
-            android:background="@drawable/rectangle_58_2x"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/api_view" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -3,4 +3,6 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#008599</color>
     <color name="colorAccent">#FFFFFF</color>
+    <color name="FadedBlueButtonColor">#4DB2D6</color>
+    <color name="FadedBlackTextColor">#006889</color>
 </resources>
