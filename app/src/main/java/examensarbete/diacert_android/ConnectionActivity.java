@@ -21,9 +21,15 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.util.concurrent.ExecutionException;
 
 import examensarbete.diacert_android.API.testAPI;
+import examensarbete.diacert_android.Database.KeyDBHandler;
+
 
 /**
  * Created by backevik on 16-04-07.
@@ -32,6 +38,7 @@ public class ConnectionActivity  extends AppCompatActivity {
     private String API = "";
     private String CODE = "";
     private EditText connectText;
+    private KeyDBHandler keyDBHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,8 @@ public class ConnectionActivity  extends AppCompatActivity {
         setContentView(R.layout.app_bar_connection);
 
         API = getIntent().getExtras().getString("API");
+
+        keyDBHandler = new KeyDBHandler(this,null);
 
         //Connect view widgets
         connectText = (EditText) findViewById(R.id.connectEditText);
@@ -107,8 +116,14 @@ public class ConnectionActivity  extends AppCompatActivity {
                                 case "MOCK":
                                     testAPI testAPI = new testAPI();
                                     try {
-                                        CODE = testAPI.execute("pair",connectText.getText().toString()).get();
-                                        Log.d("Testing API", "API resp is: "+CODE);
+                                        String jString = testAPI.execute("pair",connectText.getText().toString()).get();
+                                        if(!jString.isEmpty()){
+                                            JsonElement json = new JsonParser().parse(jString);
+                                            JsonObject  jobject = json.getAsJsonObject();
+                                            CODE = jobject.get("key").toString();
+                                            keyDBHandler.addData(CODE);
+                                        }
+                                        Log.d("Testing API", "API resp is: "+keyDBHandler.getData(CODE));
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     } catch (ExecutionException e) {
