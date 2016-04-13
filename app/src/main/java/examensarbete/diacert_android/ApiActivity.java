@@ -46,6 +46,9 @@ public class ApiActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     public void run() {
                         Intent intent = new Intent(ApiActivity.this, ConnectionActivity.class);
+                        Bundle mBundle = new Bundle();
+                        mBundle.putString("API", "MOCK");
+                        intent.putExtras(mBundle);
                         ApiActivity.this.startActivity(intent);
                         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                     }

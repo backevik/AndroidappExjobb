@@ -1,10 +1,12 @@
 package examensarbete.diacert_android;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,18 +21,27 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.concurrent.ExecutionException;
+
+import examensarbete.diacert_android.API.testAPI;
+
 /**
  * Created by backevik on 16-04-07.
  */
 public class ConnectionActivity  extends AppCompatActivity {
+    private String API = "";
+    private String CODE = "";
+    private EditText connectText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_connection);
 
+        API = getIntent().getExtras().getString("API");
+
         //Connect view widgets
-        final EditText connectText = (EditText) findViewById(R.id.connectEditText);
+        connectText = (EditText) findViewById(R.id.connectEditText);
         connectText.setTransformationMethod(new NumericKeyBoardTransformationMethod()); // Using overriding method
 
         final Button connectButton = (Button) findViewById(R.id.connectButton);
@@ -92,9 +103,29 @@ public class ConnectionActivity  extends AppCompatActivity {
                 Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         public void run() {
-                            Intent intent = new Intent(ConnectionActivity.this, MainActivity.class);
-                            ConnectionActivity.this.startActivity(intent);
-                            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                            switch (API){
+                                case "MOCK":
+                                    testAPI testAPI = new testAPI();
+                                    try {
+                                        CODE = testAPI.execute("pair",connectText.getText().toString()).get();
+                                        Log.d("Testing API", "API resp is: "+CODE);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    } catch (ExecutionException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case "DEV":
+
+                                    break;
+                            }
+                            if(CODE == null){
+                                showErrorOnConnectDialog();
+                            }else{
+                                Intent intent = new Intent(ConnectionActivity.this, MainActivity.class);
+                                ConnectionActivity.this.startActivity(intent);
+                                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                            }
                         }
                     });
             }
@@ -114,5 +145,22 @@ public class ConnectionActivity  extends AppCompatActivity {
         public CharSequence getTransformation(CharSequence source, View view) {
             return source;
         }
+    }
+
+    private void showErrorOnConnectDialog(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Koden matchade inte! Prova igen.");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }
