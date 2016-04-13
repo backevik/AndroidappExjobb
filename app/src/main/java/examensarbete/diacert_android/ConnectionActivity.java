@@ -43,11 +43,16 @@ public class ConnectionActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        keyDBHandler = new KeyDBHandler(this,null);
+        if(!keyDBHandler.getData().isEmpty()){
+            Intent intent = new Intent(ConnectionActivity.this, MainActivity.class);
+            ConnectionActivity.this.startActivity(intent);
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        }
         setContentView(R.layout.app_bar_connection);
 
         API = getIntent().getExtras().getString("API");
-
-        keyDBHandler = new KeyDBHandler(this,null);
 
         //Connect view widgets
         connectText = (EditText) findViewById(R.id.connectEditText);
@@ -123,7 +128,7 @@ public class ConnectionActivity  extends AppCompatActivity {
                                             CODE = jobject.get("key").toString();
                                             keyDBHandler.addData(CODE);
                                         }
-                                        Log.d("Testing API", "API resp is: "+keyDBHandler.getData(CODE));
+                                        Log.d("Testing API", "API resp is: "+keyDBHandler.getData());
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     } catch (ExecutionException e) {

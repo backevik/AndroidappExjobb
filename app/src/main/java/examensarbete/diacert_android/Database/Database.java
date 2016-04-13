@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  */
 public class Database {
 
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     public static final String DB_NAME = "ptj";
 
     public class KEY extends Database implements BaseColumns {

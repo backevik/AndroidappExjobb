@@ -26,13 +26,15 @@ public class KeyDBHandler extends DBHandler{
             Log.i(TAG, "Added 1 row into Key");
         }
 
-        public String getData(String key){
+        public String getData(){
             String returnKey = "";
             SQLiteDatabase db = getReadableDatabase();
-            String[] args = new String[] { key };
-            String query = "SELECT * FROM Key WHERE _key = ?";
-            Cursor c = db.rawQuery(query, args);
+            String query = "SELECT * FROM Key";
+            Cursor c = db.rawQuery(query, null);
             c.moveToFirst();
+            if(c == null || c.getCount() == 0){
+                return "";
+            }
             returnKey = c.getString(0);
             c.close();
             db.close();
