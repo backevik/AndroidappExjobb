@@ -10,8 +10,7 @@
  android:paddingRight="@dimen/activity_horizontal_margin"
  android:paddingTop="@dimen/activity_vertical_margin"
  app:layout_behavior="@string/appbar_scrolling_view_behavior"
- tools:context="examensarbete.diacert_android.MainActivity"
- tools:showIn="@layout/app_bar_main">
+ tools:context="examensarbete.diacert_android.MainActivity">
 
  <android.support.wearable.view.CardScrollView
      android:id="@+id/card_scroll_view"
@@ -54,6 +53,7 @@
                      <include
                          android:layout_width="match_parent"
                          android:layout_height="match_parent"
+                         android:id="@+id/layout_forms"
                          layout="@layout/hsv_forms" />
                      <include
                          android:layout_width="match_parent"

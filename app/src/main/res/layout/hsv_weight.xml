@@ -15,18 +15,18 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:scaleType="fitXY"
-            android:id="@+id/section_icon"
+            android:id="@+id/overview_weight"
             android:src="@drawable/weight"
             android:layout_gravity="top|center"/>
 
         <TextView
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:id="@+id/imageText"
+            android:id="@+id/weightText"
             android:text="Vikt"
             android:textColor="@color/black"
             android:textAlignment="center"
-            android:layout_below="@id/section_icon"/>
+            android:layout_below="@id/overview_weight"/>
 
     </RelativeLayout>
 </ScrollView>

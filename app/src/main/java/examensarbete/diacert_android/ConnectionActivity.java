@@ -37,6 +37,7 @@ import examensarbete.diacert_android.Database.KeyDBHandler;
 public class ConnectionActivity  extends AppCompatActivity {
     private String API = "";
     private String CODE = "";
+    private String jsonString = "";
     private EditText connectText;
     private KeyDBHandler keyDBHandler;
 
@@ -52,7 +53,7 @@ public class ConnectionActivity  extends AppCompatActivity {
         }
         setContentView(R.layout.app_bar_connection);
 
-        API = getIntent().getExtras().getString("API");
+            API = getIntent().getExtras().getString("API");
 
         //Connect view widgets
         connectText = (EditText) findViewById(R.id.connectEditText);
@@ -121,9 +122,11 @@ public class ConnectionActivity  extends AppCompatActivity {
                                 case "MOCK":
                                     testAPI testAPI = new testAPI();
                                     try {
-                                        String jString = testAPI.execute("pair",connectText.getText().toString()).get();
-                                        if(!jString.isEmpty()){
-                                            JsonElement json = new JsonParser().parse(jString);
+                                        jsonString = testAPI.execute("pair",connectText.getText().toString()).get();
+                                        if(jsonString == null){
+                                            showErrorOnConnectDialog("Kunde ej ansluta.");
+                                        }else if(!jsonString.isEmpty()){
+                                            JsonElement json = new JsonParser().parse(jsonString);
                                             JsonObject  jobject = json.getAsJsonObject();
                                             CODE = jobject.get("key").toString();
                                             keyDBHandler.addData(CODE);
@@ -140,8 +143,8 @@ public class ConnectionActivity  extends AppCompatActivity {
                                     break;
                             }
                             if(CODE == null){
-                                showErrorOnConnectDialog();
-                            }else{
+                                showErrorOnConnectDialog("Koden matchade inte! Prova igen.");
+                            }else if(jsonString != null){
                                 Intent intent = new Intent(ConnectionActivity.this, MainActivity.class);
                                 ConnectionActivity.this.startActivity(intent);
                                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
@@ -167,11 +170,12 @@ public class ConnectionActivity  extends AppCompatActivity {
         }
     }
 
-    private void showErrorOnConnectDialog(){
+    private void showErrorOnConnectDialog(String msg){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Koden matchade inte! Prova igen.");
+        builder1.setMessage(msg);
         builder1.setCancelable(true);
-
+        builder1.setTitle("Fel!");
+        builder1.setIcon(R.drawable.ic_popup_warning);
         builder1.setPositiveButton(
                 "Ok",
                 new DialogInterface.OnClickListener() {

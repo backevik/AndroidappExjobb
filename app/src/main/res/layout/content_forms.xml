@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/boxLayoutContentOverview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="examensarbete.diacert_android.MainActivity">
+
+    <android.support.wearable.view.CardScrollView
+        android:id="@+id/card_scroll_view"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_box="bottom">
+
+        <android.support.wearable.view.CardFrame
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+
+            <GridLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:columnCount="3">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="160dp"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="0">
+
+                    <ImageView
+                        android:id="@+id/formAstma"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/form"/>
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Astma" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="160dp"
+                    android:layout_column="2"
+                    android:layout_row="0"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/formDepression"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/form"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_row="0"
+                        android:layout_column="2" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Ångest \u0026 depression" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="160dp"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="1">
+
+                    <ImageView
+                        android:id="@+id/formSanity"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/form"/>
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Sinnestillstånd" />
+
+                </LinearLayout>
+
+
+            </GridLayout>
+        </android.support.wearable.view.CardFrame>
+    </android.support.wearable.view.CardScrollView>
+
+</LinearLayout>
