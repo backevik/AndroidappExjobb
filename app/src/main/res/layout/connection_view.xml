@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/startscreen_bg"
+    android:background="@color/colorptj"
     android:id="@+id/relativeConnectLayout"
     tools:context="examensarbete.diacert_android.MainActivity">
 
@@ -56,7 +56,7 @@
             android:textSize="16dp"
             android:textColor="@color/FadedBlackTextColor"
             android:background="@color/FadedBlueButtonColor"
-            android:text="Anslut till UTV"
+            android:text="Anslut"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/connectEditText"
             android:layout_marginTop="10dp"/>

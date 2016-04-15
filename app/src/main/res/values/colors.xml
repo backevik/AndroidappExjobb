@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#008599</color>
+    <color name="colorPrimaryDark">#008099</color>
     <color name="colorAccent">#FFFFFF</color>
-    <color name="FadedBlueButtonColor">#4DB2D6</color>
-    <color name="FadedBlackTextColor">#006889</color>
+    <color name="FadedBlueButtonColor">#00bfe6</color>
+    <color name="FadedBlackTextColor">#FFFFFF</color>
+    <color name="colorptj">#00ADD0</color>
+    <color name="colorptjdark">#0075B0</color>
 </resources>

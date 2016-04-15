@@ -6,29 +6,4 @@
         android:propertyName="alpha"
         android:duration="400" />
 
-    <objectAnimator
-        android:valueFrom="1.0"
-        android:valueTo="0.0"
-        android:propertyName="scaleX"
-        android:duration="500" />
-
-    <objectAnimator
-        android:valueFrom="1.0"
-        android:valueTo="0.0"
-        android:propertyName="scaleY"
-        android:duration="500" />
-
-    <objectAnimator
-        android:duration="500"
-        android:propertyName="x"
-        android:valueFrom="0"
-        android:valueTo="200"
-        android:valueType="floatType" />
-    <objectAnimator
-        android:duration="500"
-        android:propertyName="y"
-        android:valueFrom="280"
-        android:valueTo="-600"
-        android:valueType="floatType" />
-
 </set>

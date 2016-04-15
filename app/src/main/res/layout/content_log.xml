@@ -20,7 +20,7 @@
 
         <android.support.wearable.view.CardFrame
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent">
+            android:layout_width="match_parent">
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -29,8 +29,6 @@
 
                 <ListView android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
                     android:id="@+id/logListView">
                 </ListView>
 
