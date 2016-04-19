@@ -15,6 +15,11 @@ public class DBHandler  extends SQLiteOpenHelper {
     String queryKey = "CREATE TABLE "+ Database.KEY.TABLE + "(" +
             Database.KEY.COLUMN_ID + " BIGINT PRIMARY KEY " + ");";
 
+    String queryForm = "CREATE TABLE "+ Database.LOG.TABLE + "(" +
+            Database.LOG.COLUMN_DATE + " DATETIME PRIMARY KEY, "+
+            Database.LOG.COLUMN_TYPE + " TEXT, " +
+            Database.LOG.COLUMN_DATA + " TEXT " + ");";
+
     public DBHandler(Context context, SQLiteDatabase.CursorFactory factory) {
         super(context, Database.DB_NAME, factory, Database.VERSION);
     }
@@ -23,6 +28,7 @@ public class DBHandler  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         /*BEGIN TABLES*/
         db.execSQL(queryKey);
+        db.execSQL(queryForm);
         Log.d(TAG, "Tables created");
     }
 
@@ -30,6 +36,7 @@ public class DBHandler  extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         /*BEGIN_SENSORS*/
         db.execSQL("DROP TABLE IF EXISTS " + Database.KEY.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Database.LOG.TABLE);
 
         onCreate(db);
     }

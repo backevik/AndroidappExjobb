@@ -16,6 +16,9 @@ public class Database {
     }
 
     public class LOG extends Database implements BaseColumns {
-        
+        public static final String TABLE = "Log";
+        public static final String COLUMN_DATE = "_date";
+        public static final String COLUMN_TYPE = "type";
+        public static final String COLUMN_DATA = "data";
     }
 }
