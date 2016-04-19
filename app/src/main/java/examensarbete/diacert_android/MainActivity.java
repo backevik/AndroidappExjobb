@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity
             licenseDialog();
             return true;
         } else if (id == R.id.action_help) {
-            getSteps();
             return true;
         }
 
@@ -169,17 +168,6 @@ public class MainActivity extends AppCompatActivity
                 .setView(dialoglayout)
                 .create();
         alertDialog.show();
-    }
-
-    private void getSteps(){
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
-        GraphViewFragment graphViewFragment = new GraphViewFragment();
-        fragmentTransaction.replace(R.id.app_bar_main_coordLayout, graphViewFragment, "Graph Active");
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        toolbar.setTitle("Steg");
     }
 
 

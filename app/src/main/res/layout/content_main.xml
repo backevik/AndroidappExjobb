@@ -43,6 +43,7 @@
                      <include
                          android:layout_width="match_parent"
                          android:layout_height="match_parent"
+                         android:id="@+id/layout_steps"
                          layout="@layout/hsv_steps" />
 
                      <include

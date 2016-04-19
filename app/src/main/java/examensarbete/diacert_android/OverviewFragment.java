@@ -22,6 +22,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.fitness.Fitness;
 
+import examensarbete.diacert_android.TestAPI.GraphViewFragment;
+
 /**
  * Created by backevik on 16-04-08.
  */
@@ -48,6 +50,22 @@ public class OverviewFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 toolbar.setTitle("Formulär");
+            }
+        });
+
+        View stepsView = (View) v.findViewById(R.id.layout_steps);
+        ImageView stepsImage = (ImageView) stepsView.findViewById(R.id.overview_steps);
+        stepsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+                GraphViewFragment graphViewFragment = new GraphViewFragment();
+                fragmentTransaction.replace(R.id.app_bar_main_coordLayout, graphViewFragment, "Graph Active");
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                toolbar.setTitle("Steg");
             }
         });
 

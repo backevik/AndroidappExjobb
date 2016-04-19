@@ -83,7 +83,6 @@ public class GraphViewFragment extends Fragment {
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private GoogleApiClient googleApiFitnessClient;
     private OnDataPointListener mListener;
-
     private View fragmentView;
     private LineChart chart;
 
@@ -122,6 +121,10 @@ public class GraphViewFragment extends Fragment {
         fragmentView = inflater.inflate(R.layout.content_graph, container, false);
 
         chart = (LineChart) fragmentView.findViewById(R.id.chart);
+        chart.setDescription("");
+        chart.setNoDataText("Steg hämtas från Google Fit...");
+        chart.setBottom(1);
+
 
         if (!checkPermissions()) {
             requestPermissions();
@@ -379,7 +382,7 @@ public class GraphViewFragment extends Fragment {
 
 
     }
-    private void addStepSubscription() {
+    public void addStepSubscription() {
         Fitness.RecordingApi.subscribe(googleApiFitnessClient, DataType.TYPE_STEP_COUNT_DELTA)
                 .setResultCallback(new ResultCallback<Status>() {
                     @Override
@@ -398,7 +401,7 @@ public class GraphViewFragment extends Fragment {
                 });
     }
 
-    private void removeStepSubscription(){
+    public void removeStepSubscription(){
         Fitness.RecordingApi.unsubscribe(googleApiFitnessClient, DataType.TYPE_STEP_COUNT_DELTA)
                 .setResultCallback(new ResultCallback<Status>() {
                     @Override
@@ -426,10 +429,11 @@ public class GraphViewFragment extends Fragment {
 
             yVals.add(new Entry(steps.get(i), i));
         }
-        LineDataSet lineDataSet = new LineDataSet(yVals,"Steps");
+        LineDataSet lineDataSet = new LineDataSet(yVals,"Steg");
         ArrayList<ILineDataSet> iLineDataSets = new ArrayList<ILineDataSet>();
         iLineDataSets.add(lineDataSet);
         LineData linedata = new LineData(xVals,iLineDataSets);
+        linedata.setValueTextSize(8);
 
         chart.setData(linedata);
         chart.invalidate();

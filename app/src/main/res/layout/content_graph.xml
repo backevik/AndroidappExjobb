@@ -15,6 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
 
         <android.support.wearable.view.CardFrame
@@ -26,8 +27,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:scaleType="fitXY"
                     android:id="@+id/steps"
                     android:src="@drawable/steps"
@@ -37,16 +38,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/stepsHeader"
-                    android:paddingTop="4dp"
+                    android:paddingTop="3dp"
                     android:paddingLeft="2dp"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:text="Steg"
                     android:layout_toRightOf="@id/steps"/>
 
                 <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="1dp"
+                android:paddingTop="0.5dp"
                 android:paddingLeft="2dp"
                 android:textSize="12dp"
                 android:text="@string/StepsDiscription"
@@ -59,13 +60,13 @@
         </android.support.wearable.view.CardFrame>
 
         <android.support.wearable.view.CardFrame
-            android:layout_width="wrap_content"
-            android:layout_height= "wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height= "300dp">
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
-                android:layout_height="140dp" />
+                android:layout_height="match_parent" />
 
 
         </android.support.wearable.view.CardFrame>
