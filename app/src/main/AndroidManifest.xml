@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AsthmaTestActivity"
+        <activity android:name=".AsthmaForm.AsthmaTestActivity"
             android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

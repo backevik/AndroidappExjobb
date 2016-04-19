@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorptj"
+    android:id="@+id/relativeConnectLayout"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="examensarbete.diacert_android.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/q3Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Fråga tre"/>
+
+        <TextView
+            android:id="@+id/q31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/q3Title"
+            android:text="Under de senaste fyra veckorna, hur ofta har du vaknat av dina astmasymtom (väsande andning, hosta, andfåddhet/andnöd, täthetskänsla eller värk i bröstet) under natten eller tidigare än vanligt på morgonen?"/>
+        <RelativeLayout
+            android:id="@+id/q3layout"
+            android:layout_below="@id/q31"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/qa31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="left"
+                android:text="Fyra eller fler nätter i veckan"/>
+            <CheckBox
+                android:id="@+id/qa32"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textSize="20dp"
+                android:layout_below="@id/qa31"
+                android:layout_gravity="left"
+                android:text="Två till tre nätter i veckan"/>
+            <CheckBox
+                android:id="@+id/qa33"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textSize="20dp"
+                android:layout_below="@id/qa32"
+                android:layout_gravity="left"
+                android:text="En gång i veckan"/>
+            <CheckBox
+                android:id="@+id/qa34"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textSize="20dp"
+                android:layout_below="@id/qa33"
+                android:layout_gravity="left"
+                android:text="En eller ett par gånger"/>
+            <CheckBox
+                android:id="@+id/qa35"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textSize="20dp"
+                android:layout_below="@id/qa34"
+                android:layout_gravity="left"
+                android:text="Inte alls"/>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q3layout"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/q3backbtn"
+                android:textSize="16dp"
+                android:textColor="@color/FadedBlackTextColor"
+                android:background="@color/FadedBlueButtonColor"
+                android:text="Bakåt"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/q3nextbtn"
+                android:textSize="16dp"
+                android:textColor="@color/FadedBlackTextColor"
+                android:background="@color/FadedBlueButtonColor"
+                android:text="Nästa"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

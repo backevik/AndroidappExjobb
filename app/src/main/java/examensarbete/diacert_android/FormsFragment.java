@@ -1,19 +1,14 @@
 package examensarbete.diacert_android;
 
-import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.transition.Explode;
-import android.transition.Slide;
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
+
+import examensarbete.diacert_android.AsthmaForm.AsthmaTestActivity;
 
 /**
  * Created by backevik on 16-04-14.

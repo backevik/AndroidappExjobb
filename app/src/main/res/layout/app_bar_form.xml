@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/connectLayout"
+    android:id="@+id/form_coord_layout"
     android:fitsSystemWindows="true"
     tools:context="examensarbete.diacert_android.MainActivity">
 
@@ -13,10 +13,37 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/asthma_form_view" />
+    <RelativeLayout
+        android:id="@+id/asthmaProgressBarRel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/asthmaProgressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorptj"
+        android:gravity="center">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/asthmaProgressBar"
+            android:progress="0"
+            android:max="100"
+            android:visibility="invisible"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/asthmaProgressLayout"
+        android:id="@+id/form_rel_layout"></RelativeLayout>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
