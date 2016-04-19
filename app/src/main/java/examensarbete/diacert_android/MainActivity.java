@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,6 +17,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.stats.ConnectionEvent;
+import com.google.android.gms.fitness.Fitness;
+
+
+
+
+import examensarbete.diacert_android.TestAPI.GraphViewFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,6 +39,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -40,11 +56,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         OverviewFragment overviewFragment = new OverviewFragment();
         fragmentTransaction.add(R.id.app_bar_main_coordLayout, overviewFragment, "OverviewFragment Active");
         fragmentTransaction.commit();
+
+
+
 
     }
 
@@ -77,6 +97,7 @@ public class MainActivity extends AppCompatActivity
             licenseDialog();
             return true;
         } else if (id == R.id.action_help) {
+            getSteps();
             return true;
         }
 
@@ -136,4 +157,17 @@ public class MainActivity extends AppCompatActivity
                 .create();
         alertDialog.show();
     }
+
+    private void getSteps(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
+        GraphViewFragment graphViewFragment = new GraphViewFragment();
+        fragmentTransaction.replace(R.id.app_bar_main_coordLayout, graphViewFragment, "Graph Active");
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        toolbar.setTitle("Graph");
+    }
+
+
 }
