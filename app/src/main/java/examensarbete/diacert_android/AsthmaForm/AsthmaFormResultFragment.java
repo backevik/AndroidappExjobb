@@ -16,7 +16,7 @@ public class AsthmaFormResultFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.astma_form_view_q5, container, false);
+        View v = inflater.inflate(R.layout.astma_form_view_result, container, false);
 
         return v;
     }
