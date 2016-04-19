@@ -103,35 +103,6 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/q3layout"
-            android:layout_centerHorizontal="true">
-
-            <Button
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/q3backbtn"
-                android:textSize="16dp"
-                android:textColor="@color/FadedBlackTextColor"
-                android:background="@color/FadedBlueButtonColor"
-                android:text="Bakåt"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"/>
-
-            <Button
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/q3nextbtn"
-                android:textSize="16dp"
-                android:textColor="@color/FadedBlackTextColor"
-                android:background="@color/FadedBlueButtonColor"
-                android:text="Nästa"
-                android:layout_marginTop="20dp"/>
-
-        </LinearLayout>
-
     </RelativeLayout>
 
 </RelativeLayout>

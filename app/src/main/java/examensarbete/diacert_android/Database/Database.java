@@ -14,4 +14,8 @@ public class Database {
         public static final String TABLE = "Key";
         public static final String COLUMN_ID = "_key";
     }
+
+    public class LOG extends Database implements BaseColumns {
+        
+    }
 }
