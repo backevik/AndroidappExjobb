@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.app_bar_main_coordLayout, graphViewFragment, "Graph Active");
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        toolbar.setTitle("Graph");
+        toolbar.setTitle("Steg");
     }
 
 
