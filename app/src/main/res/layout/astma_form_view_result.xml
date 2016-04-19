@@ -13,22 +13,22 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/q5Title"
+            android:id="@+id/resultTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="28dp"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Fråga fem"/>
+            android:layout_marginTop="130dp"
+            android:text="Resultat"/>
 
         <TextView
-            android:id="@+id/q51"
+            android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -36,101 +36,22 @@
             android:textAlignment="center"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/q5Title"
-            android:text="Hur skulle du bedöma din astmakontroll under de senaste fyra veckorna?"/>
-        <RelativeLayout
-            android:id="@+id/q5layout"
-            android:layout_below="@id/q51"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/resultTitle"
+            android:text="RESULTAT MKAY"/>
+
+        <Button
+            android:layout_width="160dp"
             android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/qa51"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textSize="20dp"
-                android:layout_gravity="left"
-                android:text="Inte alls kontrollerad"/>
-            <CheckBox
-                android:id="@+id/qa52"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textSize="20dp"
-                android:layout_below="@id/qa51"
-                android:layout_gravity="left"
-                android:text="Dåligt kontrollerad"/>
-            <CheckBox
-                android:id="@+id/qa53"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textSize="20dp"
-                android:layout_below="@id/qa52"
-                android:layout_gravity="left"
-                android:text="Till viss del kontrollerad"/>
-            <CheckBox
-                android:id="@+id/qa54"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textSize="20dp"
-                android:layout_below="@id/qa53"
-                android:layout_gravity="left"
-                android:text="Väl kontrollerad"/>
-            <CheckBox
-                android:id="@+id/qa55"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:textSize="20dp"
-                android:layout_below="@id/qa54"
-                android:layout_gravity="left"
-                android:text="Helt kontrollerad"/>
-
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/q5layout"
-            android:layout_centerHorizontal="true">
+            android:id="@+id/donebtn"
+            android:textSize="16dp"
+            android:textColor="@color/FadedBlackTextColor"
+            android:background="@color/FadedBlueButtonColor"
+            android:text="Klar"
+            android:layout_below="@id/result"
+            android:layout_marginTop="20dp" />
 
-            <Button
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/q5backbtn"
-                android:textSize="16dp"
-                android:textColor="@color/FadedBlackTextColor"
-                android:background="@color/FadedBlueButtonColor"
-                android:text="Bakåt"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"/>
 
-            <Button
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/q5nextbtn"
-                android:textSize="16dp"
-                android:textColor="@color/FadedBlackTextColor"
-                android:background="@color/FadedBlueButtonColor"
-                android:text="Klar"
-                android:layout_marginTop="20dp"/>
-
-        </LinearLayout>
 
     </RelativeLayout>
 

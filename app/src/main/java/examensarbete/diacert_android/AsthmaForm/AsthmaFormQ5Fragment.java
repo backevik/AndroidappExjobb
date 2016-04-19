@@ -33,6 +33,10 @@ public class AsthmaFormQ5Fragment extends Fragment{
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setProgress(100);
 
+        View bLayout = (LinearLayout) getActivity().findViewById(R.id.buttonLayout);
+        Button nextBtn = (Button) bLayout.findViewById(R.id.nextbtn);
+        Button backBtn = (Button) bLayout.findViewById(R.id.backbtn);
+
         bundle = this.getArguments();
 
         final CheckBox qa51 = (CheckBox) v.findViewById(R.id.qa51);
@@ -105,8 +109,7 @@ public class AsthmaFormQ5Fragment extends Fragment{
             }
         });
 
-        Button backbtn = (Button) v.findViewById(R.id.q5backbtn);
-        backbtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AsthmaFormQ4Fragment asthmaFormQ4Fragment = new AsthmaFormQ4Fragment();
@@ -120,13 +123,12 @@ public class AsthmaFormQ5Fragment extends Fragment{
             }
         });
 
-        Button nextbtn = (Button) v.findViewById(R.id.q5nextbtn);
-        nextbtn.setOnClickListener(new View.OnClickListener() {
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(!qa51.isChecked() && !qa52.isChecked() && !qa53.isChecked() && !qa54.isChecked() && !qa55.isChecked()){
-                    showErrorOnNextDialog();
+                    showErrorOnNextDialog("Du måste välja ett alternativ innan du kan gå vidare!","Fel!");
                 }else{
                     if(qa51.isChecked()){bundle.putInt("q5",1);}
                     if(qa52.isChecked()){bundle.putInt("q5",2);}
@@ -135,6 +137,7 @@ public class AsthmaFormQ5Fragment extends Fragment{
                     if(qa55.isChecked()){bundle.putInt("q5",5);}
 
                     AsthmaFormResultFragment asthmaFormResultFragment = new AsthmaFormResultFragment();
+                    asthmaFormResultFragment.setArguments(bundle);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setCustomAnimations(R.animator.fade_in_forms, R.animator.fade_out_forms);
@@ -148,11 +151,11 @@ public class AsthmaFormQ5Fragment extends Fragment{
         return v;
     }
 
-    private void showErrorOnNextDialog(){
+    private void showErrorOnNextDialog(String msg, String title){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Du måste välja ett alternativ innan du kan gå vidare!");
+        builder1.setMessage(msg);
         builder1.setCancelable(true);
-        builder1.setTitle("Fel!");
+        builder1.setTitle(title);
         builder1.setIcon(R.drawable.ic_popup_warning);
         builder1.setPositiveButton(
                 "Ok",

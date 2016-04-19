@@ -49,7 +49,7 @@ public class LogFragment extends Fragment{
         return v;
     }
 
-    private void addDataToLog(final String name, final String data, final String date){
+    public void addDataToLog(final String name, final String data, final String date){
         list.add(new HashMap<String, String>(){{
             put("Name",name);
             put("Data",data);

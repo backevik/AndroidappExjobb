@@ -33,6 +33,10 @@ public class AsthmaFormQ4Fragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setProgress(80);
 
+        View bLayout = (LinearLayout) getActivity().findViewById(R.id.buttonLayout);
+        Button nextBtn = (Button) bLayout.findViewById(R.id.nextbtn);
+        Button backBtn = (Button) bLayout.findViewById(R.id.backbtn);
+
         bundle = this.getArguments();
 
         final CheckBox qa41 = (CheckBox) v.findViewById(R.id.qa41);
@@ -105,8 +109,7 @@ public class AsthmaFormQ4Fragment extends Fragment {
             }
         });
 
-        Button backbtn = (Button) v.findViewById(R.id.q4backbtn);
-        backbtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AsthmaFormQ3Fragment asthmaFormQ3Fragment = new AsthmaFormQ3Fragment();
@@ -120,8 +123,7 @@ public class AsthmaFormQ4Fragment extends Fragment {
             }
         });
 
-        Button nextbtn = (Button) v.findViewById(R.id.q4nextbtn);
-        nextbtn.setOnClickListener(new View.OnClickListener() {
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

@@ -22,19 +22,20 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
-            <GridLayout
-                android:layout_height="wrap_content"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_centerInParent="true"
-                android:columnCount="3">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/astmaRel"
                     android:layout_width="wrap_content"
                     android:layout_height="160dp"
-                    android:orientation="vertical"
-                    android:layout_column="0"
-                    android:layout_columnWeight="0.2"
-                    android:layout_row="0">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/formAstma"
@@ -44,20 +45,24 @@
                         android:src="@drawable/form"/>
                     <TextView
                         android:textColor="@color/black"
+                        android:layout_centerHorizontal="true"
                         android:textAlignment="center"
                         android:textSize="14dp"
-                        android:layout_width="match_parent"
+                        android:layout_below="@id/formAstma"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Astma" />
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/depressionRel"
                     android:layout_width="wrap_content"
                     android:layout_height="160dp"
-                    android:layout_column="2"
-                    android:layout_row="0"
-                    android:layout_columnWeight="0.2"
+                    android:layout_toRightOf="@id/astmaRel"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -65,28 +70,26 @@
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/form"
-
-                        android:layout_row="0"
-                        android:layout_column="2" />
+                        android:src="@drawable/form"/>
 
                     <TextView
                         android:textColor="@color/black"
                         android:textAlignment="center"
                         android:textSize="14dp"
-                        android:layout_width="match_parent"
+                        android:layout_below="@id/formDepression"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Ångest \u0026 depression" />
+                        android:layout_centerHorizontal="true"
+                        android:text="Ångest \u0026 \n depression" />
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/sanityRel"
                     android:layout_width="wrap_content"
                     android:layout_height="160dp"
-                    android:orientation="vertical"
-                    android:layout_column="1"
-                    android:layout_columnWeight="0.2"
-                    android:layout_row="0">
+                    android:layout_toRightOf="@id/depressionRel"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/formSanity"
@@ -98,13 +101,15 @@
                         android:textColor="@color/black"
                         android:textAlignment="center"
                         android:textSize="14dp"
-                        android:layout_width="match_parent"
+                        android:layout_below="@id/formSanity"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Sinnestillstånd" />
-                </LinearLayout>
+                </RelativeLayout>
 
+            </RelativeLayout>
+            </RelativeLayout>
 
-            </GridLayout>
         </android.support.wearable.view.CardFrame>
     </android.support.wearable.view.CardScrollView>
 

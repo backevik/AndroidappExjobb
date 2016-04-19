@@ -43,7 +43,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/asthmaProgressLayout"
-        android:id="@+id/form_rel_layout"></RelativeLayout>
+        android:id="@+id/form_rel_layout"
+        android:layout_above="@+id/buttonLayout">
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:background="@color/colorptj"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+                <Button
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/backbtn"
+                    android:textSize="16dp"
+                    android:textColor="@color/FadedBlackTextColor"
+                    android:background="@color/FadedBlueButtonColor"
+                    android:text="Bakåt"
+                    android:visibility="invisible"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp" />
+
+                <Button
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nextbtn"
+                    android:textSize="16dp"
+                    android:textColor="@color/FadedBlackTextColor"
+                    android:background="@color/FadedBlueButtonColor"
+                    android:text="Nästa"
+                    android:layout_toRightOf="@id/backbtn"
+                    android:visibility="invisible"
+                    android:layout_marginTop="20dp" />
+
+        </LinearLayout>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
