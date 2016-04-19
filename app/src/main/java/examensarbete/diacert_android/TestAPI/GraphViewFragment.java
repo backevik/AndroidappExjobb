@@ -121,6 +121,7 @@ public class GraphViewFragment extends Fragment {
 
         fragmentView = inflater.inflate(R.layout.content_graph, container, false);
 
+        chart = (LineChart) fragmentView.findViewById(R.id.chart);
 
         if (!checkPermissions()) {
             requestPermissions();
@@ -158,7 +159,7 @@ public class GraphViewFragment extends Fragment {
                                 Log.d(TAG, "Connected!!!");
                                 // Now you can make calls to the Fitness APIs.
                                 //findFitnessDataSources();
-                              // insertStepsToApi();
+                                //insertStepsToApi();
                                 getStepsFrom(1);
                                 //removeStepSubscription();
                                 addStepSubscription();
@@ -322,7 +323,7 @@ public class GraphViewFragment extends Fragment {
                                 }
                             }
                         }
-                       // setGraphData(steps);
+                       setGraphData(steps);
                     }
                 }
         );
@@ -411,7 +412,7 @@ public class GraphViewFragment extends Fragment {
                     }
                 });
     }
-/*
+
     private void setGraphData(ArrayList<Float> steps) {
 
         ArrayList<String> xVals = new ArrayList<String>();
@@ -425,51 +426,15 @@ public class GraphViewFragment extends Fragment {
 
             yVals.add(new Entry(steps.get(i), i));
         }
+        LineDataSet lineDataSet = new LineDataSet(yVals,"Steps");
+        ArrayList<ILineDataSet> iLineDataSets = new ArrayList<ILineDataSet>();
+        iLineDataSets.add(lineDataSet);
+        LineData linedata = new LineData(xVals,iLineDataSets);
 
-        LineDataSet set1 = null;
+        chart.setData(linedata);
+        chart.invalidate();
 
-        if (chart.getData() != null &&
-                chart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet)chart.getData().getDataSetByIndex(0);
 
-            //chart.getData()
-            chart.notifyDataSetChanged();
-        } else {
-            // create a dataset and give it a type
-            set1 = new LineDataSet(yVals, "Steg");
-
-            // set1.setFillAlpha(110);
-            // set1.setFillColor(Color.RED);
-
-            // set the line to be drawn like this "- - - - - -"
-            set1.enableDashedLine(10f, 5f, 0f);
-            set1.enableDashedHighlightLine(10f, 5f, 0f);
-            set1.setColor(Color.BLACK);
-            set1.setCircleColor(Color.BLACK);
-            set1.setLineWidth(1f);
-            set1.setCircleRadius(3f);
-            set1.setDrawCircleHole(false);
-            set1.setValueTextSize(9f);
-            set1.setDrawFilled(true);
-
-            if (Utils.getSDKInt() >= 18) {
-                // fill drawable only supported on api level 18 and above
-                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
-                set1.setFillDrawable(drawable);
-            }
-            else {
-                set1.setFillColor(Color.BLACK);
-            }
-
-            ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-            dataSets.add(set1); // add the datasets
-
-            // create a data object with the datasets
-            LineData data = new LineData(xVals, dataSets);
-
-            // set data
-            chart.setData(data);
-        }
     }
-*/
+
 }

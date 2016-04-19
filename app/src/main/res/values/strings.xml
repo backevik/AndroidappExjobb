@@ -11,6 +11,10 @@
 
     <color name="white">#FFFFFF</color>
 
+    <string name="StepsDiscription">
+        Dina registrerade steg skickas automatiskt till din vårdgivare.
+    </string>
+    
     <string name="dialogContent">
         \n
         Copyright 2008 Google Inc.\n
