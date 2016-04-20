@@ -16,14 +16,13 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
             android:src="@drawable/startscreen_logo"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:id="@+id/logo" />
 
         <TextView
@@ -31,7 +30,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/pickText"
             android:layout_below="@+id/logo"
-            android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:textSize="24dp"
