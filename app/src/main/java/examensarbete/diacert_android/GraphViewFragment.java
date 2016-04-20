@@ -1,4 +1,4 @@
-package examensarbete.diacert_android.TestAPI;
+package examensarbete.diacert_android;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 
@@ -125,11 +126,71 @@ public class GraphViewFragment extends Fragment {
         chart.setNoDataText("Steg hämtas från Google Fit...");
         chart.setBottom(1);
 
-
         if (!checkPermissions()) {
             requestPermissions();
         }
 
+        final CheckBox week = (CheckBox) fragmentView.findViewById(R.id.week);
+        final CheckBox one_month = (CheckBox) fragmentView.findViewById(R.id.one_month);
+        final CheckBox three_months = (CheckBox) fragmentView.findViewById(R.id.three_months);
+        final CheckBox six_months = (CheckBox) fragmentView.findViewById(R.id.six_months);
+        final CheckBox year = (CheckBox) fragmentView.findViewById(R.id.year);
+
+        week.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(1);
+                if(!week.isChecked()){week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        one_month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(4);
+                if (!one_month.isChecked()){one_month.toggle();}
+                if (week.isChecked()){ week.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        three_months.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(13);
+                if (!three_months.isChecked()){three_months.toggle();}
+                if (week.isChecked()){ week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        six_months.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(26);
+                if (!six_months.isChecked()){ six_months.toggle();}
+                if (week.isChecked()){ week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        year.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(52);
+                if (!year.isChecked()){year.isChecked();}
+                if (week.isChecked()){ week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+            }
+        });
         return fragmentView;
     }
 
@@ -160,12 +221,7 @@ public class GraphViewFragment extends Fragment {
                             @Override
                             public void onConnected(Bundle bundle) {
                                 Log.d(TAG, "Connected!!!");
-                                // Now you can make calls to the Fitness APIs.
-                                //findFitnessDataSources();
-                                //insertStepsToApi();
                                 getStepsFrom(1);
-                                //removeStepSubscription();
-                                addStepSubscription();
                             }
 
                             @Override
@@ -272,7 +328,7 @@ public class GraphViewFragment extends Fragment {
         }
     }
 
-    private void getStepsFrom(final int nrOfWeeks) {
+    private void getStepsFrom(int nrOfWeeks) {
         Log.d(TAG, "Inside Getsteps");
         // Setting a start and end date using a range of pastweeks before this moment.
         Calendar cal = Calendar.getInstance();
@@ -383,6 +439,13 @@ public class GraphViewFragment extends Fragment {
 
     }
     public void addStepSubscription() {
+        if (googleApiFitnessClient == null){
+            if (!checkPermissions()) {
+                requestPermissions();
+            }else{
+                buildFitnessClient();
+            }
+          }
         Fitness.RecordingApi.subscribe(googleApiFitnessClient, DataType.TYPE_STEP_COUNT_DELTA)
                 .setResultCallback(new ResultCallback<Status>() {
                     @Override
@@ -402,6 +465,13 @@ public class GraphViewFragment extends Fragment {
     }
 
     public void removeStepSubscription(){
+        if (googleApiFitnessClient == null){
+            if (!checkPermissions()) {
+                requestPermissions();
+            }else{
+                buildFitnessClient();
+            }
+        }
         Fitness.RecordingApi.unsubscribe(googleApiFitnessClient, DataType.TYPE_STEP_COUNT_DELTA)
                 .setResultCallback(new ResultCallback<Status>() {
                     @Override
@@ -430,10 +500,16 @@ public class GraphViewFragment extends Fragment {
             yVals.add(new Entry(steps.get(i), i));
         }
         LineDataSet lineDataSet = new LineDataSet(yVals,"Steg");
+        lineDataSet.setLineWidth(3);
+        lineDataSet.setCircleRadius(5);
+        lineDataSet.setDrawFilled(true);
+        lineDataSet.setColor(Color.parseColor("#00ADD0"));
+        lineDataSet.setCircleColor(Color.parseColor("#0075B0"));
+
         ArrayList<ILineDataSet> iLineDataSets = new ArrayList<ILineDataSet>();
         iLineDataSets.add(lineDataSet);
         LineData linedata = new LineData(xVals,iLineDataSets);
-        linedata.setValueTextSize(8);
+        linedata.setValueTextSize(9);
 
         chart.setData(linedata);
         chart.invalidate();

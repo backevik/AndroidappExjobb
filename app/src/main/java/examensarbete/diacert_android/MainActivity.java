@@ -5,15 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.transition.Explode;
-import android.transition.Slide;
-import android.transition.TransitionInflater;
-
-import android.support.design.widget.Snackbar;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,23 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-
-import java.util.concurrent.ExecutionException;
-
-import examensarbete.diacert_android.API.testAPI;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.stats.ConnectionEvent;
-import com.google.android.gms.fitness.Fitness;
-
-
-
-
-import examensarbete.diacert_android.TestAPI.GraphViewFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
