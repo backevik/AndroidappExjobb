@@ -27,7 +27,7 @@ import com.google.gson.JsonParser;
 
 import java.util.concurrent.ExecutionException;
 
-import examensarbete.diacert_android.API.testAPI;
+import examensarbete.diacert_android.API.TestAPI;
 import examensarbete.diacert_android.Database.KeyDBHandler;
 
 
@@ -120,7 +120,7 @@ public class ConnectionActivity  extends AppCompatActivity {
                         public void run() {
                             switch (API){
                                 case "MOCK":
-                                    testAPI testAPI = new testAPI();
+                                    TestAPI testAPI = new TestAPI();
                                     try {
                                         jsonString = testAPI.execute("pair",connectText.getText().toString()).get();
                                         if(jsonString == null){

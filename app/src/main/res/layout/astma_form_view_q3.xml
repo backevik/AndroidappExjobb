@@ -37,7 +37,7 @@
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/q3Title"
-            android:text="Under de senaste fyra veckorna, hur ofta har du vaknat av dina astmasymtom (väsande andning, hosta, andfåddhet/andnöd, täthetskänsla eller värk i bröstet) under natten eller tidigare än vanligt på morgonen?"/>
+            android:text="@string/q3t"/>
         <RelativeLayout
             android:id="@+id/q3layout"
             android:layout_below="@id/q31"
@@ -54,7 +54,7 @@
                 android:buttonTint="@color/white"
                 android:textSize="20dp"
                 android:layout_gravity="left"
-                android:text="Fyra eller fler nätter i veckan"/>
+                android:text="@string/qa31"/>
             <CheckBox
                 android:id="@+id/qa32"
                 android:layout_marginTop="10dp"
@@ -65,7 +65,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa31"
                 android:layout_gravity="left"
-                android:text="Två till tre nätter i veckan"/>
+                android:text="@string/qa32"/>
             <CheckBox
                 android:id="@+id/qa33"
                 android:layout_marginTop="10dp"
@@ -76,7 +76,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa32"
                 android:layout_gravity="left"
-                android:text="En gång i veckan"/>
+                android:text="@string/qa33"/>
             <CheckBox
                 android:id="@+id/qa34"
                 android:layout_marginTop="10dp"
@@ -87,7 +87,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa33"
                 android:layout_gravity="left"
-                android:text="En eller ett par gånger"/>
+                android:text="@string/qa34"/>
             <CheckBox
                 android:id="@+id/qa35"
                 android:layout_marginTop="10dp"
@@ -98,7 +98,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa34"
                 android:layout_gravity="left"
-                android:text="Inte alls"/>
+                android:text="@string/qa35"/>
 
 
         </RelativeLayout>

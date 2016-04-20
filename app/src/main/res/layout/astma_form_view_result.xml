@@ -24,7 +24,7 @@
             android:textColor="@color/white"
             android:textAlignment="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="100dp"
             android:text="Resultat"/>
 
         <TextView
@@ -39,6 +39,18 @@
             android:layout_below="@id/resultTitle"
             android:text="RESULTAT MKAY"/>
 
+        <TextView
+            android:id="@+id/sendDoctorAsthma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/result"
+            android:text="@string/sendResultToDoctor"/>
+
         <Button
             android:layout_width="160dp"
             android:layout_centerHorizontal="true"
@@ -48,7 +60,7 @@
             android:textColor="@color/FadedBlackTextColor"
             android:background="@color/FadedBlueButtonColor"
             android:text="Klar"
-            android:layout_below="@id/result"
+            android:layout_below="@id/sendDoctorAsthma"
             android:layout_marginTop="20dp" />
 
 

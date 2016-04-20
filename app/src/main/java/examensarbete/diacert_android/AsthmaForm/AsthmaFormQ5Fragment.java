@@ -130,11 +130,11 @@ public class AsthmaFormQ5Fragment extends Fragment{
                 if(!qa51.isChecked() && !qa52.isChecked() && !qa53.isChecked() && !qa54.isChecked() && !qa55.isChecked()){
                     showErrorOnNextDialog("Du måste välja ett alternativ innan du kan gå vidare!","Fel!");
                 }else{
-                    if(qa51.isChecked()){bundle.putInt("q5",1);}
-                    if(qa52.isChecked()){bundle.putInt("q5",2);}
-                    if(qa53.isChecked()){bundle.putInt("q5",3);}
-                    if(qa54.isChecked()){bundle.putInt("q5",4);}
-                    if(qa55.isChecked()){bundle.putInt("q5",5);}
+                    if(qa51.isChecked()){bundle.putInt("q5",1); bundle.putString("qt5",getString(R.string.qa51));}
+                    if(qa52.isChecked()){bundle.putInt("q5",2); bundle.putString("qt5",getString(R.string.qa52));}
+                    if(qa53.isChecked()){bundle.putInt("q5",3); bundle.putString("qt5",getString(R.string.qa53));}
+                    if(qa54.isChecked()){bundle.putInt("q5",4); bundle.putString("qt5",getString(R.string.qa54));}
+                    if(qa55.isChecked()){bundle.putInt("q5",5); bundle.putString("qt5",getString(R.string.qa55));}
 
                     AsthmaFormResultFragment asthmaFormResultFragment = new AsthmaFormResultFragment();
                     asthmaFormResultFragment.setArguments(bundle);

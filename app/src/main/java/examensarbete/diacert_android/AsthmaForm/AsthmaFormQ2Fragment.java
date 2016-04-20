@@ -130,11 +130,11 @@ public class AsthmaFormQ2Fragment extends Fragment {
                 if(!qa21.isChecked() && !qa22.isChecked() && !qa23.isChecked() && !qa24.isChecked() && !qa25.isChecked()){
                     showErrorOnNextDialog();
                 }else{
-                    if(qa21.isChecked()){bundle.putInt("q2",1);}
-                    if(qa22.isChecked()){bundle.putInt("q2",2);}
-                    if(qa23.isChecked()){bundle.putInt("q2",3);}
-                    if(qa24.isChecked()){bundle.putInt("q2",4);}
-                    if(qa25.isChecked()){bundle.putInt("q2",5);}
+                    if(qa21.isChecked()){bundle.putInt("q2",1); bundle.putString("qt2",getString(R.string.qa21));}
+                    if(qa22.isChecked()){bundle.putInt("q2",2); bundle.putString("qt2",getString(R.string.qa22));}
+                    if(qa23.isChecked()){bundle.putInt("q2",3); bundle.putString("qt2",getString(R.string.qa23));}
+                    if(qa24.isChecked()){bundle.putInt("q2",4); bundle.putString("qt2",getString(R.string.qa24));}
+                    if(qa25.isChecked()){bundle.putInt("q2",5); bundle.putString("qt2",getString(R.string.qa25));}
 
                     AsthmaFormQ3Fragment asthmaFormQ3Fragment = new AsthmaFormQ3Fragment();
                     asthmaFormQ3Fragment.setArguments(bundle);

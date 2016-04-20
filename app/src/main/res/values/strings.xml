@@ -36,6 +36,47 @@
 
     </string>
 
+    <string name="sendResultToDoctor">Resultatet har nu även skickats till din läkare. För att se skickade resultat kan du gå in på logg.</string>
+
     <string name="empty_field">-</string>
+
+    <!-- ASTHMA FORM QUESTIONS AND ANSWERS -->
+
+    <string name="q1t">Under de senaste fyra veckorna, hur stor del av tiden har du hindrats av din astma från att utföra dina normala aktiviteter på arbetet, i skolan eller hemma?</string>
+    <string name="qa11">Hela tiden</string>
+    <string name="qa12">En större del av tiden</string>
+    <string name="qa13">En del av tiden</string>
+    <string name="qa14">En mindre del av tiden</string>
+    <string name="qa15">Ingen del av tiden</string>
+
+    <string name="q2t">Under de senaste fyra veckorna, hur ofta har du varit andfådd/upplevt andnöd?</string>
+    <string name="qa21">Mer än en gång om dagen</string>
+    <string name="qa22">En gång om dagen</string>
+    <string name="qa23">Tre till sex gånger i veckan</string>
+    <string name="qa24">En eller två gånger i veckan</string>
+    <string name="qa25">Inte alls</string>
+
+    <string name="q3t">Under de senaste fyra veckorna, hur ofta har du vaknat av dina astmasymtom (väsande andning, hosta, andfåddhet/andnöd, täthetskänsla eller värk i bröstet) under natten eller tidigare än vanligt på morgonen?</string>
+    <string name="qa31">Fyra eller fler nätter i veckan</string>
+    <string name="qa32">Två till tre nätter i veckan</string>
+    <string name="qa33">En gång i veckan</string>
+    <string name="qa34">En eller ett par gånger</string>
+    <string name="qa35">Inte alls</string>
+
+    <string name="q4t">Under de senaste fyra veckorna, hur ofta har du använt din kortverkande luftrörsvidgare (som t.ex. Bricanyl, Ventoline, Airomir)?</string>
+    <string name="qa41">Tre eller fler gånger per dag</string>
+    <string name="qa42">En eller två gånger per dag</string>
+    <string name="qa43">Två eller tre gånger per veckan</string>
+    <string name="qa44">En gång i veckan eller mer sällan</string>
+    <string name="qa45">Inte alls</string>
+
+    <string name="q5t">Hur skulle du bedöma din astmakontroll under de senaste fyra veckorna?</string>
+    <string name="qa51">Inte alls kontrollerad</string>
+    <string name="qa52">Dåligt kontrollerad</string>
+    <string name="qa53">Till viss del kontrollerad</string>
+    <string name="qa54">Väl kontrollerad</string>
+    <string name="qa55">Helt kontrollerad</string>
+
+
 
 </resources>
