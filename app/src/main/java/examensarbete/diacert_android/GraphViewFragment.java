@@ -6,27 +6,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.design.BuildConfig;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ListView;
 
-
-import com.github.mikephil.charting.utils.Utils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,21 +28,20 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.fitness.Fitness;
-import com.google.android.gms.fitness.FitnessStatusCodes;
+
 import com.google.android.gms.fitness.data.Bucket;
 import com.google.android.gms.fitness.data.DataPoint;
 import com.google.android.gms.fitness.data.DataSet;
 import com.google.android.gms.fitness.data.DataSource;
 import com.google.android.gms.fitness.data.DataType;
 import com.google.android.gms.fitness.data.Field;
-import com.google.android.gms.fitness.data.Value;
-import com.google.android.gms.fitness.request.DataInsertRequest;
+
 import com.google.android.gms.fitness.request.DataReadRequest;
-import com.google.android.gms.fitness.request.DataSourcesRequest;
+
 import com.google.android.gms.fitness.request.OnDataPointListener;
-import com.google.android.gms.fitness.request.SensorRequest;
+
 import com.google.android.gms.fitness.result.DataReadResult;
-import com.google.android.gms.fitness.result.DataSourcesResult;
+
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -69,6 +61,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.fitness.result.ListSubscriptionsResult;
 
 import examensarbete.diacert_android.R;
 
@@ -86,6 +79,9 @@ public class GraphViewFragment extends Fragment {
     private OnDataPointListener mListener;
     private View fragmentView;
     private LineChart chart;
+    private boolean activeSubscription;
+    private Context context;
+    private Activity activity;
 
     @Override
     public void onStop() {
@@ -125,72 +121,11 @@ public class GraphViewFragment extends Fragment {
         chart.setDescription("");
         chart.setNoDataText("Steg hämtas från Google Fit...");
         chart.setBottom(1);
-
+        activity = getActivity();
         if (!checkPermissions()) {
             requestPermissions();
         }
-
-        final CheckBox week = (CheckBox) fragmentView.findViewById(R.id.week);
-        final CheckBox one_month = (CheckBox) fragmentView.findViewById(R.id.one_month);
-        final CheckBox three_months = (CheckBox) fragmentView.findViewById(R.id.three_months);
-        final CheckBox six_months = (CheckBox) fragmentView.findViewById(R.id.six_months);
-        final CheckBox year = (CheckBox) fragmentView.findViewById(R.id.year);
-
-        week.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getStepsFrom(1);
-                if(!week.isChecked()){week.toggle();}
-                if (one_month.isChecked()){ one_month.toggle();}
-                if (three_months.isChecked()){ three_months.toggle();}
-                if (six_months.isChecked()){ six_months.toggle();}
-                if (year.isChecked()){ year.toggle();}
-            }
-        });
-        one_month.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getStepsFrom(4);
-                if (!one_month.isChecked()){one_month.toggle();}
-                if (week.isChecked()){ week.toggle();}
-                if (three_months.isChecked()){ three_months.toggle();}
-                if (six_months.isChecked()){ six_months.toggle();}
-                if (year.isChecked()){ year.toggle();}
-            }
-        });
-        three_months.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getStepsFrom(13);
-                if (!three_months.isChecked()){three_months.toggle();}
-                if (week.isChecked()){ week.toggle();}
-                if (one_month.isChecked()){ one_month.toggle();}
-                if (six_months.isChecked()){ six_months.toggle();}
-                if (year.isChecked()){ year.toggle();}
-            }
-        });
-        six_months.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getStepsFrom(26);
-                if (!six_months.isChecked()){ six_months.toggle();}
-                if (week.isChecked()){ week.toggle();}
-                if (one_month.isChecked()){ one_month.toggle();}
-                if (three_months.isChecked()){ three_months.toggle();}
-                if (year.isChecked()){ year.toggle();}
-            }
-        });
-        year.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getStepsFrom(52);
-                if (!year.isChecked()){year.isChecked();}
-                if (week.isChecked()){ week.toggle();}
-                if (one_month.isChecked()){ one_month.toggle();}
-                if (three_months.isChecked()){ three_months.toggle();}
-                if (six_months.isChecked()){ six_months.toggle();}
-            }
-        });
+        addCheckBoxListeners();
         return fragmentView;
     }
 
@@ -221,6 +156,10 @@ public class GraphViewFragment extends Fragment {
                             @Override
                             public void onConnected(Bundle bundle) {
                                 Log.d(TAG, "Connected!!!");
+                                //insertStepsToApi(699,System.currentTimeMillis());
+                                //addStepSubscription();
+                                checkStepSubscription();
+                                //insertStepsToApi(4,System.currentTimeMillis());
                                 getStepsFrom(1);
                             }
 
@@ -438,33 +377,9 @@ public class GraphViewFragment extends Fragment {
 
 
     }
-    public void addStepSubscription() {
-        if (googleApiFitnessClient == null){
-            if (!checkPermissions()) {
-                requestPermissions();
-            }else{
-                buildFitnessClient();
-            }
-          }
-        Fitness.RecordingApi.subscribe(googleApiFitnessClient, DataType.TYPE_STEP_COUNT_DELTA)
-                .setResultCallback(new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        if(status.isSuccess()){
-                            if(status.getStatusCode() == FitnessStatusCodes.SUCCESS_ALREADY_SUBSCRIBED){
-                                Log.d(TAG, "Subscription already exists");
-                            } else{
-                                Log.d(TAG, "Successfully added subscriprion");
-                            }
 
-                        }else{
-                            Log.d(TAG, "There was a problem subscribing to the sensor");
-                        }
-                    }
-                });
-    }
+    public boolean checkStepSubscription(){
 
-    public void removeStepSubscription(){
         if (googleApiFitnessClient == null){
             if (!checkPermissions()) {
                 requestPermissions();
@@ -472,18 +387,17 @@ public class GraphViewFragment extends Fragment {
                 buildFitnessClient();
             }
         }
-        Fitness.RecordingApi.unsubscribe(googleApiFitnessClient, DataType.TYPE_STEP_COUNT_DELTA)
-                .setResultCallback(new ResultCallback<Status>() {
+        Fitness.RecordingApi.listSubscriptions(googleApiFitnessClient,DataType.TYPE_STEP_COUNT_DELTA)
+                .setResultCallback(new ResultCallback<ListSubscriptionsResult>() {
                     @Override
-                    public void onResult(Status status) {
-                        if (status.isSuccess()) {
-                            Log.d(TAG, "Successfully unsubscribed for data type: " );
-                        } else {
-                            // Subscription not removed
-                            Log.d(TAG, "Failed to unsubscribe for data type: " );
-                        }
+                    public void onResult(@NonNull ListSubscriptionsResult listSubscriptionsResult) {
+
+                        Log.d(TAG,"subscriptions list"+listSubscriptionsResult.getSubscriptions().toString().contains("step_count.delta"));
+                        activeSubscription = listSubscriptionsResult.getSubscriptions().toString().contains("step_count.delta");
+
                     }
                 });
+        return activeSubscription;
     }
 
     private void setGraphData(ArrayList<Float> steps) {
@@ -492,7 +406,6 @@ public class GraphViewFragment extends Fragment {
         for (int i = 0; i < steps.size(); i++) {
             xVals.add((i) + "");
         }
-
         ArrayList<Entry> yVals = new ArrayList<Entry>();
 
         for (int i = 0; i < steps.size(); i++) {
@@ -515,6 +428,70 @@ public class GraphViewFragment extends Fragment {
         chart.invalidate();
 
 
+    }
+    private void addCheckBoxListeners(){
+
+        final CheckBox week = (CheckBox) fragmentView.findViewById(R.id.week);
+        final CheckBox one_month = (CheckBox) fragmentView.findViewById(R.id.one_month);
+        final CheckBox three_months = (CheckBox) fragmentView.findViewById(R.id.three_months);
+        final CheckBox six_months = (CheckBox) fragmentView.findViewById(R.id.six_months);
+        final CheckBox year = (CheckBox) fragmentView.findViewById(R.id.year);
+
+        week.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(1);
+                if(!week.isChecked()){week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        one_month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(4);
+                if (!one_month.isChecked()){one_month.toggle();}
+                if (week.isChecked()){ week.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        three_months.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(13);
+                if (!three_months.isChecked()){three_months.toggle();}
+                if (week.isChecked()){ week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        six_months.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(26);
+                if (!six_months.isChecked()){ six_months.toggle();}
+                if (week.isChecked()){ week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (year.isChecked()){ year.toggle();}
+            }
+        });
+        year.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStepsFrom(52);
+                if (!year.isChecked()){year.isChecked();}
+                if (week.isChecked()){ week.toggle();}
+                if (one_month.isChecked()){ one_month.toggle();}
+                if (three_months.isChecked()){ three_months.toggle();}
+                if (six_months.isChecked()){ six_months.toggle();}
+            }
+        });
     }
 
 }

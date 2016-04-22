@@ -20,7 +20,14 @@
             android:id="@+id/unpairPreference"
             android:title="Koppla bort"
             android:summary="Koppla bort den parkoppling du och din läkare genomförde"
-            android:checked="false"
-            android:defaultValue="false"/>
+            android:checked="true"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="stepRecording"
+            android:id="@+id/stepRecording"
+            android:title="Spara steg"
+            android:summary="Dina steg räknas och skickas till vårdgivaren"
+            android:checked="true"
+            android:defaultValue="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
