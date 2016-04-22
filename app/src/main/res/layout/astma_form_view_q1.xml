@@ -37,7 +37,7 @@
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/q1Title"
-            android:text="Under de senaste fyra veckorna, hur stor del av tiden har du hindrats av din astma från att utföra dina normala aktiviteter på arbetet, i skolan eller hemma?"/>
+            android:text="@string/q1t"/>
         <RelativeLayout
             android:id="@+id/q1layout"
             android:layout_below="@id/q11"
@@ -54,7 +54,7 @@
                 android:buttonTint="@color/white"
                 android:textSize="20dp"
                 android:layout_gravity="left"
-                android:text="Hela tiden"/>
+                android:text="@string/qa11"/>
             <CheckBox
                 android:id="@+id/qa12"
                 android:layout_marginTop="10dp"
@@ -65,7 +65,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa11"
                 android:layout_gravity="left"
-                android:text="En större del av tiden"/>
+                android:text="@string/qa12"/>
             <CheckBox
                 android:id="@+id/qa13"
                 android:layout_marginTop="10dp"
@@ -76,7 +76,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa12"
                 android:layout_gravity="left"
-                android:text="En del av tiden"/>
+                android:text="@string/qa13"/>
             <CheckBox
                 android:id="@+id/qa14"
                 android:layout_marginTop="10dp"
@@ -87,7 +87,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa13"
                 android:layout_gravity="left"
-                android:text="En mindre del av tiden"/>
+                android:text="@string/qa14"/>
             <CheckBox
                 android:id="@+id/qa15"
                 android:layout_marginTop="10dp"
@@ -98,7 +98,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa14"
                 android:layout_gravity="left"
-                android:text="Ingen del av tiden"/>
+                android:text="@string/qa15"/>
 
 
         </RelativeLayout>

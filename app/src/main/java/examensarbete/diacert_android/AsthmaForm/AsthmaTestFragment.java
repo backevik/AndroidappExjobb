@@ -28,7 +28,8 @@ public class AsthmaTestFragment extends Fragment{
             ProgressBar progressBar = (ProgressBar) pLayout.findViewById(R.id.asthmaProgressBar);
             progressBar.setVisibility(View.INVISIBLE);
 
-            Button infoButton = (Button) v.findViewById(R.id.asthmaInfoButton);
+            final Button infoButton = (Button) v.findViewById(R.id.asthmaInfoButton);
+            infoButton.setEnabled(true);
             infoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -38,10 +39,13 @@ public class AsthmaTestFragment extends Fragment{
                 }
             });
 
-            Button startButton = (Button) v.findViewById(R.id.asthmaStartButton);
+            final Button startButton = (Button) v.findViewById(R.id.asthmaStartButton);
+            startButton.setEnabled(true);
             startButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    startButton.setEnabled(false);
+                    infoButton.setEnabled(false);
                     AsthmaFormQ1Fragment q1 = new AsthmaFormQ1Fragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

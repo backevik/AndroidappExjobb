@@ -39,7 +39,7 @@ public class KeyDBHandler extends DBHandler{
             c.close();
             db.close();
             Log.i(TAG, "Got 1 row from Key");
-            return returnKey;
+            return returnKey.replace("\"","");
         }
 
         public void removeData(String key){

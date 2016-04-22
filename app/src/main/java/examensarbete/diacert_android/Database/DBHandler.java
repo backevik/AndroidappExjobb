@@ -16,7 +16,7 @@ public class DBHandler  extends SQLiteOpenHelper {
             Database.KEY.COLUMN_ID + " BIGINT PRIMARY KEY " + ");";
 
     String queryForm = "CREATE TABLE "+ Database.LOG.TABLE + "(" +
-            Database.LOG.COLUMN_DATE + " DATETIME PRIMARY KEY, "+
+            Database.LOG.COLUMN_DATE + " BIGINT PRIMARY KEY, "+
             Database.LOG.COLUMN_TYPE + " TEXT, " +
             Database.LOG.COLUMN_DATA + " TEXT " + ");";
 

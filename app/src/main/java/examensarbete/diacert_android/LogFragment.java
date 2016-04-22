@@ -11,18 +11,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+import examensarbete.diacert_android.Database.LogDBHandler;
 
 /**
  * Created by backevik on 16-04-08.
  */
 public class LogFragment extends Fragment{
 
-    ListView lv;
-    Context context;
+    private ListView lv;
+    private Context context;
+    private LogDBHandler logDBHandler;
 
     private ArrayList<HashMap<String, String>> list;
+
+    private HashMap<Long, ArrayList<String>> tempMap;
+    private ArrayList<String> tempList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,14 +39,24 @@ public class LogFragment extends Fragment{
 
         ListView listView=(ListView)v.findViewById(R.id.logListView);
 
+        logDBHandler = new LogDBHandler(getActivity(),null);
+
+        tempMap = new HashMap<>();
+        tempList = new ArrayList<>();
+
         list=new ArrayList<HashMap<String,String>>();
 
-        addDataToLog("Steps","250","08/04-16");
-        addDataToLog("Steps","2500","07/04-16");
-        addDataToLog("Steps","900","05/04-16");
-        addDataToLog("Steps","670","03/04-16");
-        addDataToLog("Steps","1600","02/04-16");
-        addDataToLog("Steps","1900","01/04-16");
+        tempMap = logDBHandler.getData();
+
+        for(long date : tempMap.keySet()){
+            tempList = tempMap.get(date);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(date);
+            int month = cal.get(Calendar.MONTH) + 1 ;
+            String dateString = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
+            addDataToLog(tempList.get(0),tempList.get(1),dateString);
+        }
 
         LogAdaptor adapter=new LogAdaptor(this, list);
         listView.setAdapter(adapter);

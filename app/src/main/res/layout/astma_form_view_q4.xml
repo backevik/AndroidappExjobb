@@ -37,7 +37,7 @@
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/q4Title"
-            android:text="Under de senaste fyra veckorna, hur ofta har du använt din kortverkande luftrörsvidgare (som t.ex. Bricanyl, Ventoline, Airomir)?"/>
+            android:text="@string/q4t"/>
         <RelativeLayout
             android:id="@+id/q4layout"
             android:layout_below="@id/q41"
@@ -54,7 +54,7 @@
                 android:buttonTint="@color/white"
                 android:textSize="20dp"
                 android:layout_gravity="left"
-                android:text="Tre eller fler gånger per dag"/>
+                android:text="@string/qa41"/>
             <CheckBox
                 android:id="@+id/qa42"
                 android:layout_marginTop="10dp"
@@ -65,7 +65,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa41"
                 android:layout_gravity="left"
-                android:text="En eller två gånger per dag"/>
+                android:text="@string/qa42"/>
             <CheckBox
                 android:id="@+id/qa43"
                 android:layout_marginTop="10dp"
@@ -76,7 +76,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa42"
                 android:layout_gravity="left"
-                android:text="Två eller tre gånger per veckan"/>
+                android:text="@string/qa43"/>
             <CheckBox
                 android:id="@+id/qa44"
                 android:layout_marginTop="10dp"
@@ -87,7 +87,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa43"
                 android:layout_gravity="left"
-                android:text="En gång i veckan eller mer sällan"/>
+                android:text="@string/qa44"/>
             <CheckBox
                 android:id="@+id/qa45"
                 android:layout_marginTop="10dp"
@@ -98,7 +98,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa44"
                 android:layout_gravity="left"
-                android:text="Inte alls"/>
+                android:text="@string/qa45"/>
 
 
         </RelativeLayout>

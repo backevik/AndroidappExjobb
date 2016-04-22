@@ -37,7 +37,7 @@
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/q5Title"
-            android:text="Hur skulle du bedöma din astmakontroll under de senaste fyra veckorna?"/>
+            android:text="@string/q5t"/>
         <RelativeLayout
             android:id="@+id/q5layout"
             android:layout_below="@id/q51"
@@ -54,7 +54,7 @@
                 android:buttonTint="@color/white"
                 android:textSize="20dp"
                 android:layout_gravity="left"
-                android:text="Inte alls kontrollerad"/>
+                android:text="@string/qa51"/>
             <CheckBox
                 android:id="@+id/qa52"
                 android:layout_marginTop="10dp"
@@ -65,7 +65,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa51"
                 android:layout_gravity="left"
-                android:text="Dåligt kontrollerad"/>
+                android:text="@string/qa52"/>
             <CheckBox
                 android:id="@+id/qa53"
                 android:layout_marginTop="10dp"
@@ -76,7 +76,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa52"
                 android:layout_gravity="left"
-                android:text="Till viss del kontrollerad"/>
+                android:text="@string/qa53"/>
             <CheckBox
                 android:id="@+id/qa54"
                 android:layout_marginTop="10dp"
@@ -87,7 +87,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa53"
                 android:layout_gravity="left"
-                android:text="Väl kontrollerad"/>
+                android:text="@string/qa54"/>
             <CheckBox
                 android:id="@+id/qa55"
                 android:layout_marginTop="10dp"
@@ -98,7 +98,7 @@
                 android:textSize="20dp"
                 android:layout_below="@id/qa54"
                 android:layout_gravity="left"
-                android:text="Helt kontrollerad"/>
+                android:text="@string/qa55"/>
 
 
         </RelativeLayout>

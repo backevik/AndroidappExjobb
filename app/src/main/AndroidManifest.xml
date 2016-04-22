@@ -17,10 +17,9 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ConnectionActivity"
-        android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar" android:permission="android.permission.INTERNET">
+        android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ApiActivity" android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar"
-            android:permission="android.permission.INTERNET">
+        <activity android:name=".ApiActivity" android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
