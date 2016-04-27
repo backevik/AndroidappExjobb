@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -127,8 +128,9 @@ public class ConnectionActivity  extends AppCompatActivity {
                                             showErrorOnConnectDialog("Kunde ej ansluta.");
                                         }else if(!jsonString.isEmpty()){
                                             JsonElement json = new JsonParser().parse(jsonString);
-                                            JsonObject  jobject = json.getAsJsonObject();
-                                            CODE = jobject.get("key").toString();
+                                            JsonArray jArray = json.getAsJsonArray();
+                                            JsonObject  jobject = jArray.get(0).getAsJsonObject();
+                                            CODE = jobject.get("crypt").toString();
                                             keyDBHandler.addData(CODE);
                                         }
                                         Log.d("Testing API", "API resp is: "+keyDBHandler.getData());

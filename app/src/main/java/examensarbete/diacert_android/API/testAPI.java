@@ -46,7 +46,7 @@ public class TestAPI extends AsyncTask<String, Void, String> {
         try {
 
             if(param[0].equals("pair")){
-                url = new URL("http://46.101.96.201:8080/api/users/"+param[1]);
+                url = new URL("http://46.101.96.201:8080/api/devices/connect/"+param[1]);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Content-Type","x-www-form-urlencoded");
@@ -73,11 +73,117 @@ public class TestAPI extends AsyncTask<String, Void, String> {
 
             }else if(param[0].equals("steps")) {
 
+                try {
+                    url = new URL("http://46.101.96.201:8080/api/steps");
+                    urlConnection = (HttpURLConnection) url.openConnection();
 
-            }else if(param[0].equals("form")){
+                    urlConnection.setRequestProperty("Content-Type","application/json");
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("key",param[1]);
+
+                    urlConnection.setUseCaches(false);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+
+                    urlConnection.connect();
+
+                    JSONObject jsonParam = new JSONObject();
+                    jsonParam.put("user",param[1]);
+                    jsonParam.put("steps",param[2]);
+                    jsonParam.put("timestamp",param[3]);
+
+                    DataOutputStream printout = new DataOutputStream(urlConnection.getOutputStream ());
+                    String str = jsonParam.toString();
+                    byte[] data=str.getBytes("UTF-8");
+                    printout.write(data);
+                    printout.flush ();
+                    printout.close ();
+
+                    StringBuilder sb = new StringBuilder();
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            urlConnection.getInputStream(),"utf-8"));
+                    String line = "";
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+
+                    System.out.println("POST Request: "+sb.toString());
+
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    return null;
+
+                } finally {
+
+                    if(urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }else if(param[0].equals("adform")){
 
                 try {
-                    url = new URL("http://46.101.96.201:8080/api/forms/");
+                    url = new URL("http://46.101.96.201:8080/api/forms/ad/");
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    urlConnection.setRequestProperty("Content-Type","application/json");
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("key",param[1]);
+
+                    urlConnection.setUseCaches(false);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+
+                    urlConnection.connect();
+
+                    JSONObject jsonParam = new JSONObject();
+                    jsonParam.put("user",param[1]);
+                    for(int i = 1; i<=14; i++){
+                        jsonParam.put("question"+i,param[i+1]);
+                    }
+                    jsonParam.put("anxietyscore",param[16]);
+                    jsonParam.put("depressionscore",param[17]);
+
+                    DataOutputStream printout = new DataOutputStream(urlConnection.getOutputStream ());
+                    String str = jsonParam.toString();
+                    byte[] data=str.getBytes("UTF-8");
+                    printout.write(data);
+                    printout.flush ();
+                    printout.close ();
+
+                    StringBuilder sb = new StringBuilder();
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            urlConnection.getInputStream(),"utf-8"));
+                    String line = "";
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+
+                    System.out.println("POST Request: "+sb.toString());
+
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    return null;
+
+                } finally {
+
+                    if(urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }else if(param[0].equals("asthmaform")){
+
+                try {
+                    url = new URL("http://46.101.96.201:8080/api/forms/asthma/");
                     urlConnection = (HttpURLConnection) url.openConnection();
 
                     urlConnection.setRequestProperty("Content-Type","application/json");

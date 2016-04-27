@@ -17,9 +17,9 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ConnectionActivity"
-        android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar">
+        android:label="ptj_forAndroid" android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ApiActivity" android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".ApiActivity" android:label="ptj_forAndroid" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AsthmaForm.AsthmaTestActivity"
-            android:label="DiaCert_forAndroid" android:theme="@style/AppTheme.NoActionBar">
+            android:label="ptj_forAndroid" android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".AnxietyDepressionForm.ADTestActivity" android:label="ptj_forAndroid" android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

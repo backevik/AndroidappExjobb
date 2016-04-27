@@ -119,7 +119,7 @@ public class SettingsFragment extends PreferenceFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        keyDBHandler.removeData(keyDBHandler.getData());
+                        keyDBHandler.removeData();
                         Intent intent = new Intent(getActivity(), ConnectionActivity.class);
                         Bundle mBundle = new Bundle();
                         mBundle.putString("API", "MOCK");
