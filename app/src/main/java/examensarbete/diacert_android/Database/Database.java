@@ -7,7 +7,9 @@ import android.provider.BaseColumns;
  */
 public class Database {
 
+
     public static final int VERSION = 8;
+
     public static final String DB_NAME = "ptj";
 
     public class KEY extends Database implements BaseColumns {
@@ -20,5 +22,11 @@ public class Database {
         public static final String COLUMN_DATE = "_date";
         public static final String COLUMN_TYPE = "type";
         public static final String COLUMN_DATA = "data";
+    }
+
+    public class STEPS extends Database implements BaseColumns{
+        public static final String TABLE = "Steps";
+        public static final String  COLUMN_ID =  "timestamps";
+
     }
 }
