@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import examensarbete.diacert_android.AnxietyDepressionForm.ADTestActivity;
 import examensarbete.diacert_android.AsthmaForm.AsthmaTestActivity;
 
 /**
@@ -28,6 +29,16 @@ public class FormsFragment extends Fragment{
                         Intent intent = new Intent(getActivity(), AsthmaTestActivity.class);
                         getActivity().startActivity(intent);
                         getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            }
+        });
+
+        ImageView depressionIconView = (ImageView) v.findViewById(R.id.formDepression);
+        depressionIconView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ADTestActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
             }
         });
 

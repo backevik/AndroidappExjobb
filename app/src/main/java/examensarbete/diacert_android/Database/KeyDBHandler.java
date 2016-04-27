@@ -42,10 +42,9 @@ public class KeyDBHandler extends DBHandler{
             return returnKey.replace("\"","");
         }
 
-        public void removeData(String key){
+        public void removeData(){
             SQLiteDatabase db = getWritableDatabase();
-            String[] args = new String[]{key};
-            int rows = db.delete("Key","_key = ?", args);
+            int rows = db.delete("Key", "1", null);
             db.close();
             Log.i(TAG, "Removed "+rows+" rows from Key");
         }

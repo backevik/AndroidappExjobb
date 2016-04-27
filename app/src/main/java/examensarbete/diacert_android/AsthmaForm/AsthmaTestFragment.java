@@ -28,6 +28,13 @@ public class AsthmaTestFragment extends Fragment{
             ProgressBar progressBar = (ProgressBar) pLayout.findViewById(R.id.asthmaProgressBar);
             progressBar.setVisibility(View.INVISIBLE);
 
+            View bLayout = (LinearLayout) getActivity().findViewById(R.id.buttonLayout);
+            Button nextBtn = (Button) bLayout.findViewById(R.id.nextbtn);
+            Button backBtn = (Button) bLayout.findViewById(R.id.backbtn);
+
+            nextBtn.setVisibility(View.INVISIBLE);
+            backBtn.setVisibility(View.INVISIBLE);
+
             final Button infoButton = (Button) v.findViewById(R.id.asthmaInfoButton);
             infoButton.setEnabled(true);
             infoButton.setOnClickListener(new View.OnClickListener() {
