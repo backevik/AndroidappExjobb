@@ -147,6 +147,7 @@ public class TestAPI extends AsyncTask<String, Void, String> {
                     }
                     jsonParam.put("anxietyscore",param[16]);
                     jsonParam.put("depressionscore",param[17]);
+                    jsonParam.put("timestamp",param[18]);
 
                     DataOutputStream printout = new DataOutputStream(urlConnection.getOutputStream ());
                     String str = jsonParam.toString();
@@ -204,6 +205,7 @@ public class TestAPI extends AsyncTask<String, Void, String> {
                     jsonParam.put("question4",param[5]);
                     jsonParam.put("question5",param[6]);
                     jsonParam.put("score",param[7]);
+                    jsonParam.put("timestamp", param[8]);
 
                     DataOutputStream printout = new DataOutputStream(urlConnection.getOutputStream ());
                     String str = jsonParam.toString();

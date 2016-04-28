@@ -45,7 +45,7 @@ public class ADFormResultFragment extends Fragment {
             resp = testAPI.execute("adform",keyDBHandler.getData(),bundle.getString("qt1"),bundle.getString("qt2"),bundle.getString("qt3")
                     ,bundle.getString("qt4"),bundle.getString("qt5"), bundle.getString("qt6"), bundle.getString("qt7"),
                     bundle.getString("qt8"),bundle.getString("qt9"),bundle.getString("qt10"),bundle.getString("qt11"),
-                    bundle.getString("qt12"),bundle.getString("qt13"),bundle.getString("qt14"), resultAnxiety+"",resultDepression+"").get();
+                    bundle.getString("qt12"),bundle.getString("qt13"),bundle.getString("qt14"), resultAnxiety+"",resultDepression+"",System.currentTimeMillis()+"").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

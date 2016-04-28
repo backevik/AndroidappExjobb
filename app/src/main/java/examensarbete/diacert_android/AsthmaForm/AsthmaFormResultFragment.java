@@ -41,8 +41,8 @@ public class AsthmaFormResultFragment extends Fragment {
         String resp = "";
 
         try {//finish parameters in POST request.
-            resp = testAPI.execute("form",keyDBHandler.getData(),bundle.getString("qt1"),bundle.getString("qt2"),bundle.getString("qt3")
-                    ,bundle.getString("qt4"),bundle.getString("qt5"), result+"").get();
+            resp = testAPI.execute("asthmaform",keyDBHandler.getData(),bundle.getString("qt1"),bundle.getString("qt2"),bundle.getString("qt3")
+                    ,bundle.getString("qt4"),bundle.getString("qt5"), result+"",System.currentTimeMillis()+"").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
