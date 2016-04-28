@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -25,7 +27,7 @@ public class StepsDBHandler extends DBHandler{
     }
 
     public long getData(){
-        long returnTimeStamp;
+        long returnTimeStamp = 0;
         SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT MAX(timestamps) AS lastInsert" +
                 " FROM Steps";
@@ -37,6 +39,10 @@ public class StepsDBHandler extends DBHandler{
         if(returnTimeStamp >0){
             return returnTimeStamp;
         }
-        return 0;
+        Calendar cal = Calendar.getInstance();
+        Date now = new Date();
+        cal.setTime(now);
+        cal.add(Calendar.YEAR, -1);
+        return cal.getTimeInMillis();
     }
 }

@@ -36,6 +36,7 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.data.Bucket;
 import com.google.android.gms.fitness.data.DataPoint;
@@ -52,9 +53,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import examensarbete.diacert_android.API.TestAPI;
 import examensarbete.diacert_android.Database.KeyDBHandler;
 import examensarbete.diacert_android.Database.StepsDBHandler;
 
@@ -67,9 +72,9 @@ public class MainActivity extends AppCompatActivity
     private GoogleApiClient googleApiClient;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private boolean activeSubscription = true;
-    private StepsDBHandler stepsDBHandler;
     private String googleApiCaller;
     public static final String TAG = "STEPSWEEKS";
+    private StepsDBHandler stepsDBHandler;
     //private MainActivity activity;
 
 
@@ -123,8 +128,7 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.app_bar_main_coordLayout, overviewFragment, "OverviewFragment Active");
         fragmentTransaction.commit();
 
-        stepsDBHandler = new StepsDBHandler(this, null);
-        //stepsDBHandler.addData(System.currentTimeMillis());
+        stepsDBHandler = new StepsDBHandler(this,null);
 
         setApiCaller("main");
         if (!checkPermissions()) {
@@ -226,7 +230,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void buildFitnessClient() {
-
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Fitness.HISTORY_API)
                 .addApi(Fitness.RECORDING_API)
@@ -245,9 +248,10 @@ public class MainActivity extends AppCompatActivity
                                 }else if(googleApiCaller.equals("main")){
                                     if(checkStepSubscription()){
                                         Log.d("main", "updating steps");
-                                        getStepsFrom(System.currentTimeMillis()-10000);
-                                        googleApiClient.stopAutoManage(MainActivity.this);
-                                        googleApiClient.disconnect();
+                                        //get time from db
+                                        Log.d(TAG,"timestamp" +stepsDBHandler.getData());
+
+                                        getStepsFrom(stepsDBHandler.getData());
                                     }
                                 }
                             }
@@ -368,7 +372,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
     private void getStepsFrom(long startTime) {
-
+        Log.d(TAG, "tries to get steps");
         final DataReadRequest dataReadRequest = new DataReadRequest.Builder()
                 .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
                 .bucketByTime(1, TimeUnit.DAYS.DAYS)
@@ -429,6 +433,25 @@ public class MainActivity extends AppCompatActivity
 
     void uploadSteps(HashMap<Long, Integer> steps){
         Log.d("upload", steps.toString());
+        TestAPI testAPI = new TestAPI();
+        KeyDBHandler keyDBHandler = new KeyDBHandler(this,null);
+        String resp = "";
+
+        for(Map.Entry<Long,Integer> entry : steps.entrySet()){
+
+            String timeStamp = entry.getKey().toString();
+            String nrOfSteps = entry.getValue().toString();
+            try {//finish parameters in POST request.
+
+                resp = new TestAPI().execute("steps",keyDBHandler.getData(),nrOfSteps , timeStamp).get();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        stepsDBHandler.addData(System.currentTimeMillis());
     }
 
     public void getStepsFromWeeks(int nrOfWeeks) {
