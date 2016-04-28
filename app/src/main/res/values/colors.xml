@@ -8,4 +8,5 @@
     <color name="colorptj">#00ADD0</color>
     <color name="colorptjdark">#0075B0</color>
     <color name="colorptjgreen">#A3DD00</color>
+    <color name="colorBgGray">#F5F5F5</color>
 </resources>

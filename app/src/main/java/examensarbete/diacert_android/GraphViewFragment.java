@@ -115,20 +115,6 @@ public class GraphViewFragment extends Fragment {
         addCheckBoxListeners();
         return fragmentView;
     }
-    /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //5 is the auth request code that you send from MainActivity requestCode == 5
-        if (googleApiFitnessClient != null) {
-            Log.d(TAG, "Activity result finished authorissation, disconnect the client and reconnect");
-
-            googleApiFitnessClient.stopAutoManage((FragmentActivity) getActivity());
-            googleApiFitnessClient.disconnect();
-            googleApiFitnessClient.connect();
-        }
-    }
-*/
 
     public void setGraphData(ArrayList<Float> steps) {
 
