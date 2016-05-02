@@ -435,7 +435,6 @@ public class MainActivity extends AppCompatActivity
 
     void uploadSteps(HashMap<Long, Integer> steps){
         Log.d("upload", steps.toString());
-        TestAPI testAPI = new TestAPI();
         KeyDBHandler keyDBHandler = new KeyDBHandler(this,null);
         String resp = "";
 

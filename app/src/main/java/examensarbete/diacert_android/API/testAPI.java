@@ -240,6 +240,87 @@ public class TestAPI extends AsyncTask<String, Void, String> {
                 }
 
 
+            }else if(param[0].equals("getMsg")){
+                url = new URL("http://46.101.96.201:8080/api/message/"+param[1]);
+
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestProperty("Content-Type","x-www-form-urlencoded");
+                urlConnection.setUseCaches(false);
+                urlConnection.setAllowUserInteraction(false);
+
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setRequestProperty("key",param[1]);
+
+                urlConnection.connect();
+                int status = urlConnection.getResponseCode();
+                Log.d(getClass().getName().toString(), "Status code "+status);
+                switch (status) {
+                    case 200:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        Log.d("Status Code: ", status + "");
+                        return sb.toString();
+                }
+            }else if(param[0].equals("sendMsg")){
+                try {
+                    url = new URL("http://46.101.96.201:8080/api/message");
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    urlConnection.setRequestProperty("Content-Type","application/json");
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("key",param[1]);
+
+                    urlConnection.setUseCaches(false);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+
+                    urlConnection.connect();
+
+                    JSONObject jsonParam = new JSONObject();
+                    jsonParam.put("from",param[1]);
+                    jsonParam.put("text",param[2]);
+                    jsonParam.put("timestamp",param[3]);
+                    jsonParam.put("self",param[4]);
+
+                    DataOutputStream printout = new DataOutputStream(urlConnection.getOutputStream ());
+                    String str = jsonParam.toString();
+                    byte[] data=str.getBytes("UTF-8");
+                    printout.write(data);
+                    printout.flush ();
+                    printout.close ();
+
+                    StringBuilder sb = new StringBuilder();
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            urlConnection.getInputStream(),"utf-8"));
+                    String line = "";
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+
+                    System.out.println("POST Request: "+sb.toString());
+
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                    return null;
+
+                } finally {
+
+                    if(urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+
+
             }else{
                 throw new Exception("Faulty command sent!");
             }
