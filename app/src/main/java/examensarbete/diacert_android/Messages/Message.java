@@ -11,8 +11,8 @@ public class Message {
     public Message() {
     }
 
-    public Message(String fromName, String message, boolean isSelf) {
-        this.fromName = fromName;
+    public Message(String message, boolean isSelf) {
+        //this.fromName = fromName;
         this.message = message;
         this.isSelf = isSelf;
     }

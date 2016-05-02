@@ -45,32 +45,33 @@ public class MessagesListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        /**
-         * The following list not implemented reusable list items as list items
-         * are showing incorrect data Add the solution if you have one
-         * */
-
         Message m = messagesItems.get(position);
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
+
 
         // Identifying the message owner
         if (messagesItems.get(position).isSelf()) {
             // message belongs to you, so load the right aligned layout
             convertView = mInflater.inflate(R.layout.list_message_right,
                     null);
+            TextView lblFrom = (TextView) convertView.findViewById(R.id.lblMsgFrom);
+            TextView txtMsg = (TextView) convertView.findViewById(R.id.txtMsg);
+            txtMsg.setText(m.getMessage());
+            lblFrom.setText("Du");
+
+
         } else {
             // message belongs to other person, load the left aligned layout
             convertView = mInflater.inflate(R.layout.list_message_left,
                     null);
+            TextView lblFrom = (TextView) convertView.findViewById(R.id.lblMsgFrom);
+            TextView txtMsg = (TextView) convertView.findViewById(R.id.txtMsg);
+            txtMsg.setText(m.getMessage());
+            lblFrom.setText("Vårdgivare");
         }
-
-        TextView lblFrom = (TextView) convertView.findViewById(R.id.lblMsgFrom);
-        TextView txtMsg = (TextView) convertView.findViewById(R.id.txtMsg);
-
-        txtMsg.setText(m.getMessage());
-        lblFrom.setText(m.getFromName());
 
         return convertView;
     }
