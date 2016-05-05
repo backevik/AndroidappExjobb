@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
+import com.github.mikephil.charting.components.XAxis;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -49,6 +50,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.jar.Manifest;
 
@@ -116,24 +119,43 @@ public class GraphViewFragment extends Fragment {
         return fragmentView;
     }
 
-    public void setGraphData(ArrayList<Float> steps) {
+    public void setGraphData(TreeMap<Long,Integer> steps) {
 
-        ArrayList<String> xVals = new ArrayList<String>();
-        for (int i = 0; i < steps.size(); i++) {
-            xVals.add((i) + "");
-        }
         ArrayList<Entry> yVals = new ArrayList<Entry>();
+        ArrayList<String> xVals = new ArrayList<String>();
+        int i = 0;
+        for(Map.Entry<Long,Integer> entry : steps.entrySet()) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(steps.firstKey());
+            int month = cal.get(Calendar.MONTH) + 1 ;
+            String startDate = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
 
-        for (int i = 0; i < steps.size(); i++) {
+            cal.setTimeInMillis(steps.lastKey());
+            month = cal.get(Calendar.MONTH) + 1 ;
+            String endDate = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
 
-            yVals.add(new Entry(steps.get(i), i));
+            Float nrOfSteps = entry.getValue().floatValue();
+            yVals.add(new Entry(nrOfSteps,i));
+            if(i==0){
+                xVals.add(startDate);
+            }else if(i == steps.size()-1){
+                xVals.add(endDate);
+            }else{xVals.add("");}
+            i++;
         }
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setLabelRotationAngle(-30);
+        xAxis.setXOffset(20);
+        xAxis.setYOffset(12);
+
         LineDataSet lineDataSet = new LineDataSet(yVals,"Steg");
         lineDataSet.setLineWidth(3);
         lineDataSet.setCircleRadius(5);
         lineDataSet.setDrawFilled(true);
+        lineDataSet.setDrawCubic(true);
         lineDataSet.setColor(Color.parseColor("#00ADD0"));
         lineDataSet.setCircleColor(Color.parseColor("#0075B0"));
+
 
         ArrayList<ILineDataSet> iLineDataSets = new ArrayList<ILineDataSet>();
         iLineDataSets.add(lineDataSet);

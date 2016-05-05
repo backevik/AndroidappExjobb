@@ -61,7 +61,7 @@
 
         <android.support.wearable.view.CardFrame
             android:layout_width="match_parent"
-            android:layout_height= "300dp">
+            android:layout_height= "340dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -84,7 +84,7 @@
                         android:textColor="@color/colorptj"
                         android:buttonTint="@color/colorptj"
                         android:textSize="10dp"
-                        android:text="1 Vecka"
+                        android:text="1 V"
                         android:checked="true"/>
                     <CheckBox
                         android:id="@+id/one_month"
@@ -122,6 +122,7 @@
                         android:buttonTint="@color/colorptj"
                         android:textSize="10dp"
                         android:layout_toRightOf="@id/six_months"
+                        android:lines="1"
                         android:text="1 År"
                         />
                 </LinearLayout>

@@ -51,6 +51,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -160,7 +161,9 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            licenseDialog();
+            LicensesDialog aid = new LicensesDialog(this);
+            aid.getWindow().getAttributes().windowAnimations = R.style.InfoDialogAnimation;
+            aid.show();
             return true;
         } else if (id == R.id.action_help) {
             return true;
@@ -218,19 +221,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void licenseDialog(){
-        LayoutInflater inflater = getLayoutInflater();
-        View dialoglayout = inflater.inflate(R.layout.licence_dialog,null);
-
-        AlertDialog  alertDialog = new AlertDialog.Builder(this,R.style.Theme_AppCompat_Light_Dialog_Alert)
-                .setTitle("Open Scource Licenses")
-                .setPositiveButton(android.R.string.ok, null)
-                .setView(dialoglayout)
-                .create();
-        alertDialog.show();
-    }
-
-
     public void buildFitnessClient() {
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Fitness.HISTORY_API)
@@ -240,7 +230,7 @@ public class MainActivity extends AppCompatActivity
                         new GoogleApiClient.ConnectionCallbacks() {
                             @Override
                             public void onConnected(Bundle bundle) {
-                                //insertStepsToApi(500, System.currentTimeMillis());
+                                //insertStepsToApi(5000, System.currentTimeMillis());
                                 if(googleApiCaller.equals("settings")){
                                     FragmentManager fm = getFragmentManager();
                                     SettingsFragment settingsFragment = (SettingsFragment) fm.findFragmentByTag("SettingsFragment Active");
@@ -481,7 +471,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onResult(@NonNull DataReadResult dataReadResult) {
                         Log.d(TAG,"Processing data from historyAPI");
-                        final ArrayList<Float> steps= new ArrayList<Float>();
+                        final TreeMap<Long,Integer> steps= new TreeMap<Long, Integer>();
                         if (dataReadResult.getBuckets().size() > 0) {
                             for (Bucket bucket : dataReadResult.getBuckets()) {
                                 List<DataSet> dataSets = bucket.getDataSets();
@@ -492,17 +482,17 @@ public class MainActivity extends AppCompatActivity
                                         DateFormat dateFormat = DateFormat.getTimeInstance();
                                         long dpStart = dp.getStartTime(TimeUnit.NANOSECONDS)/1000000;
                                         long dpEnd = dp.getEndTime(TimeUnit.NANOSECONDS)/ 1000000;
-                                        float totalStep = 0;
+                                        int totalStep = 0;
                                         Log.i(TAG, "Data point:");
                                         Log.i(TAG, "\tType: " + dp.getDataType().getName());
-                                        Log.i(TAG, "\tStart: " + dateFormat.format(dp.getStartTime(TimeUnit.DAYS)));
+                                        Log.i(TAG, "\tStart: " + dateFormat.format(dp.getStartTime(TimeUnit.MILLISECONDS)));
                                         Log.i(TAG, "\tEnd: " + dateFormat.format(dp.getEndTime(TimeUnit.DAYS)));
                                         for(Field field : dp.getDataType().getFields()) {
                                             Log.i(TAG, "\tField: " + field.getName() +
                                                     " Value: " + dp.getValue(field));
                                             totalStep = totalStep + dp.getValue(field).asInt();
                                         }
-                                        steps.add(totalStep);
+                                        steps.put(dp.getTimestamp(TimeUnit.MILLISECONDS),totalStep);
                                         Log.d(TAG, "Total steps " + totalStep +"\n"+ "Day dp: "+ new Date(dp.getTimestamp(TimeUnit.MILLISECONDS)).toString());
                                     }
 
@@ -512,6 +502,7 @@ public class MainActivity extends AppCompatActivity
                         FragmentManager fm = getFragmentManager();
                         GraphViewFragment graphView = (GraphViewFragment) fm.findFragmentByTag("Graph Active");
                         Log.d(TAG,steps.toString());
+                        Log.d("total",steps.toString());
                         graphView.setGraphData(steps);
                     }
                 }

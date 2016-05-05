@@ -86,6 +86,7 @@ public class ChatFragment extends Fragment {
 
         getMessages();
 
+        addDemoMsg();
         messagesListAdapter = new MessagesListAdapter(getActivity(),msgList);
 
         listView.setAdapter(messagesListAdapter);
@@ -165,6 +166,18 @@ public class ChatFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
+    private void addDemoMsg(){
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Hej hur ser mina prover ut?", true));
+        msgList.add(new Message("Har tyvärr inte fått svar från labbet. Men återkommer så fort jag ver något.", false));
+        msgList.add(new Message("Okej, kan du svara på hur lång tid det kan ta?", true));
+        msgList.add(new Message("Det kan jag tyvärr inte. Men lovar att höra av mig så fort jag kan", false));
     }
 
     public static void hideKeyboard(Context ctx) {
