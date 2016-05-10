@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 public class Database {
 
 
-    public static final int VERSION = 15;
+    public static final int VERSION = 16;
 
     public static final String DB_NAME = "ptj";
 

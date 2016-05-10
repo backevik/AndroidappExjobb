@@ -86,7 +86,7 @@ public class ChatFragment extends Fragment {
 
         getMessages();
 
-        addDemoMsg();
+        //addDemoMsg();
         messagesListAdapter = new MessagesListAdapter(getActivity(),msgList);
 
         listView.setAdapter(messagesListAdapter);

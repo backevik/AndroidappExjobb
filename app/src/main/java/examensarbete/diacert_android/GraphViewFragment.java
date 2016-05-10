@@ -124,21 +124,20 @@ public class GraphViewFragment extends Fragment {
         ArrayList<Entry> yVals = new ArrayList<Entry>();
         ArrayList<String> xVals = new ArrayList<String>();
         int i = 0;
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(steps.firstKey());
+        int month = cal.get(Calendar.MONTH) + 1 ;
+        String startDate = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
+
+        cal.setTimeInMillis(steps.lastKey());
+        month = cal.get(Calendar.MONTH) + 1 ;
+        String endDate = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
         for(Map.Entry<Long,Integer> entry : steps.entrySet()) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(steps.firstKey());
-            int month = cal.get(Calendar.MONTH) + 1 ;
-            String startDate = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
-
-            cal.setTimeInMillis(steps.lastKey());
-            month = cal.get(Calendar.MONTH) + 1 ;
-            String endDate = cal.get(Calendar.DAY_OF_MONTH)+"/"+month+"-"+cal.get(Calendar.YEAR);
-
             Float nrOfSteps = entry.getValue().floatValue();
             yVals.add(new Entry(nrOfSteps,i));
-            if(i==0){
+            if(entry.getKey() == steps.firstKey()){
                 xVals.add(startDate);
-            }else if(i == steps.size()-1){
+            }else if(entry.getKey() == steps.lastKey() || steps.firstKey() == steps.lastKey()){
                 xVals.add(endDate);
             }else{xVals.add("");}
             i++;
