@@ -165,10 +165,7 @@ public class MainActivity extends AppCompatActivity
             aid.getWindow().getAttributes().windowAnimations = R.style.InfoDialogAnimation;
             aid.show();
             return true;
-        } else if (id == R.id.action_help) {
-            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -503,7 +500,12 @@ public class MainActivity extends AppCompatActivity
                         GraphViewFragment graphView = (GraphViewFragment) fm.findFragmentByTag("Graph Active");
                         Log.d(TAG,steps.toString());
                         Log.d("total",steps.toString());
-                        graphView.setGraphData(steps);
+                        if(steps.size()>0){
+                            graphView.setGraphData(steps);
+                        }else{
+                            Log.d(TAG,"no data from fit");
+                        }
+
                     }
                 }
         );
