@@ -129,9 +129,15 @@ public class ConnectionActivity  extends AppCompatActivity {
                                         }else if(!jsonString.isEmpty()){
                                             JsonElement json = new JsonParser().parse(jsonString);
                                             JsonArray jArray = json.getAsJsonArray();
-                                            JsonObject  jobject = jArray.get(0).getAsJsonObject();
-                                            CODE = jobject.get("crypt").toString();
-                                            keyDBHandler.addData(CODE);
+                                            if(jArray.size()>0){
+                                                JsonObject  jobject = jArray.get(0).getAsJsonObject();
+                                                CODE = jobject.get("crypt").toString();
+                                                keyDBHandler.addData(CODE);
+                                            }else{
+                                                CODE = null;
+                                            }
+
+
                                         }
                                         Log.d("Testing API", "API resp is: "+keyDBHandler.getData());
                                     } catch (InterruptedException e) {

@@ -67,10 +67,11 @@ public class SettingsFragment extends PreferenceFragment {
         keyDBHandler = new KeyDBHandler(getActivity(), null);
 
         unpairCheckbox = (CheckBoxPreference) findPreference("pref_key_connect");
+        unpairCheckbox.setChecked(true);
         unpairCheckbox.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                if(unpairCheckbox.isChecked()){
+                if(!unpairCheckbox.isChecked()){
                     showUnpairDialog();
                     return true;
                 }else{

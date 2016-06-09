@@ -45,8 +45,9 @@ public class KeyDBHandler extends DBHandler{
         public void removeData(){
             SQLiteDatabase db = getWritableDatabase();
             int rows = db.delete("Key", "1", null);
-            db.close();
             onUpgrade(db,Database.VERSION,Database.VERSION+1);
+            db.close();
+
             Log.i(TAG, "Removed "+rows+" rows from Key");
         }
 }
